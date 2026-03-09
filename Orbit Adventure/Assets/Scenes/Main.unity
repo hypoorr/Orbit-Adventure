@@ -676,8 +676,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 330585545}
-  xSensitivity: 30
-  ySensitivity: 30
+  xSensitivity: 60
+  ySensitivity: 60
 --- !u!114 &1701813402
 MonoBehaviour:
   m_ObjectHideFlags: 0

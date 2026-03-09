@@ -9,7 +9,7 @@ public class PlayerMotor : MonoBehaviour
     private bool isGrounded;
     public float gravity = -9.8f;
     public float jumpHeight = 1.5f;
-    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
