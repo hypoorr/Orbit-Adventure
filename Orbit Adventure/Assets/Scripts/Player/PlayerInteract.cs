@@ -8,30 +8,33 @@ public class PlayerInteract : MonoBehaviour
     private float distance = 3f;
     [SerializeField]
     private LayerMask mask;
-    private PlayerUI playerUI;
+    [SerializeField] private PlayerUI playerUI;
     private InputManager inputManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        cam = GetComponent<PlayerLook>().cam;
-        playerUI = GetComponent<PlayerUI>();
+        cam = GetComponent<PlayerLook>().cam;       
         inputManager = GetComponent<InputManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        playerUI.UpdateText(string.Empty);
-        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
+        if(playerUI)
+        {
+            playerUI.UpdateText(string.Empty);
+        }
+
+        Ray ray = new Ray(cam.transform.position, cam.transform.forward); // create ray cast
         Debug.DrawRay(ray.origin, ray.direction * distance);
         RaycastHit hitInfo;
         if (Physics.Raycast(ray, out hitInfo, distance))
         {
-            if (hitInfo.collider.GetComponent<Interactable>() != null)
+            if (hitInfo.collider.GetComponent<Interactable>() != null) // check if ray hits an interactable object
             {
                 Interactable interactable = hitInfo.collider.GetComponent<Interactable>();
-                playerUI.UpdateText(interactable.promptMessage);
-                if (inputManager.onFoot.Interact.triggered)
+                playerUI.UpdateText(interactable.promptMessage); // update interact prompt text
+                if (inputManager.onFoot.Interact.triggered) // if interact is pressed, run interaction script
                 {
                     interactable.BaseInteract();
                 }
@@ -40,3 +43,4 @@ public class PlayerInteract : MonoBehaviour
 
     }
 }
+
