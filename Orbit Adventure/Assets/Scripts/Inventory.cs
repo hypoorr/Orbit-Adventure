@@ -11,7 +11,7 @@ public class InventoryItem // inventory item layout
 
 public class Inventory : MonoBehaviour
 {
-    public List<InventoryItem> items = new List<InventoryItem>(); // list to hold all items
+    public static List<InventoryItem> items = new List<InventoryItem>(); // list to hold all items
     private bool inventoryOpen = false;
     [SerializeField] private GameObject inventoryUI;
     void Start()
@@ -29,14 +29,23 @@ public class Inventory : MonoBehaviour
                 inventoryOpen = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
+                inventoryUI.SetActive(false);
             }
             else // if inventory closed, then open it and show cursor
             {
                 inventoryOpen = true;
                 Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;        
+                Cursor.visible = true;      
+                inventoryUI.SetActive(true);  
             }
 
+        }
+
+        if (inventoryOpen)
+        {
+            //copy inventory item element
+            //locate item name text and set itemname on it
+            //locate item quantity text and set itemquantity on it
         }
     }
 
