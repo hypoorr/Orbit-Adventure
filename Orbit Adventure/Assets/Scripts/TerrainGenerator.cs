@@ -7,8 +7,8 @@ public class TerrainGenerator : MonoBehaviour
 
     public float depth = 20;
 
-    public int width = 10000;
-    public int height = 10000;
+    public int width = 1000;
+    public int height = 1000;
 
     private float xTerrainPos;
     private float zTerrainPos;
@@ -93,7 +93,7 @@ public class TerrainGenerator : MonoBehaviour
 
         Rigidbody rb = shipModel.AddComponent<Rigidbody>();
 
-        rb.mass = 10000;
+        rb.mass = 100000;
 
         yield return new WaitForSeconds(4f);
 
