@@ -13,6 +13,8 @@ public class TerrainGenerator : MonoBehaviour
     private float xTerrainPos;
     private float zTerrainPos;
 
+    public GameObject prefab;
+    public GameObject enemyPrefab;
 
     public float scale = 20f;
 
@@ -42,6 +44,7 @@ public class TerrainGenerator : MonoBehaviour
         zTerrainPos = terrain.transform.position.z;
 
         StartCoroutine(PositionShip());
+        StartCoroutine(SpawnEnemies());
 
 
     }
@@ -94,7 +97,7 @@ public class TerrainGenerator : MonoBehaviour
         Rigidbody rb = shipModel.AddComponent<Rigidbody>();
 
         rb.mass = 100000;
-
+;
         yield return new WaitForSeconds(4f);
 
         Destroy(rb);
@@ -103,7 +106,31 @@ public class TerrainGenerator : MonoBehaviour
         playerModel.transform.position = new Vector3(shipModel.transform.position.x, shipModel.transform.position.y + 3f, shipModel.transform.position.z);
         playerModel.GetComponent<CharacterController>().enabled = true;
         loadingScreen.SetActive(false);
-        //(GameObject)Instantiate(prefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
+
+
+        //spawn gold block
+        randX += Random.Range(-100,100);
+        randZ += Random.Range(-100,100);
+        yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ));
+        yVal += 3f;
+        Instantiate(prefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
+
+    }
+
+    IEnumerator SpawnEnemies()
+    {
+        for (int i = 0; i < 50; i++)
+        {
+            float randX = Random.Range(xTerrainPos, xTerrainPos + width);
+            float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
+            float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ));
+            yVal += 2f;
+
+            Instantiate(enemyPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
+            yield return new WaitForSeconds(0.01f);
+        }
+        
+        
     }
 }
 
