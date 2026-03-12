@@ -70,7 +70,7 @@ public class Inventory : MonoBehaviour
             {
                 //Debug.Log(i.itemName + " " + i.itemQuantity);
                 GameObject newElement = Instantiate(itemElement,inventoryBG, true); 
-                newElement.transform.position = new Vector3(20 * elementIndex, 0, 0);
+                newElement.transform.position = new Vector3(60 * elementIndex, 0, 0);
                 itemElementList.Add(newElement); // add element to the list
                 elementIndex += 1; // increment the index
 
