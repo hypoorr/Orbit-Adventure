@@ -62,26 +62,23 @@ public class Inventory : MonoBehaviour
         void UpdateInventoryDisplay()
         {
             elementIndex = 0;
-            foreach(GameObject i in itemElementList)
+            foreach(GameObject i in itemElementList) // destroy previous inventory elements
             {
                 Destroy(i);
             }
-            foreach(InventoryItem i in items)
+            foreach(InventoryItem i in items) // for each inventory item, create a element on the UI for it
             {
-                Debug.Log(i.itemName + " " + i.itemQuantity);
-                GameObject newElement = Instantiate(itemElement,inventoryBG, false);
-                // new Vector3(20 * elementIndex, 0, 0), Quaternion.identity, 
+                //Debug.Log(i.itemName + " " + i.itemQuantity);
+                GameObject newElement = Instantiate(itemElement,inventoryBG, true); 
                 newElement.transform.position = new Vector3(20 * elementIndex, 0, 0);
-                itemElementList.Add(newElement);
-                elementIndex += 1;
+                itemElementList.Add(newElement); // add element to the list
+                elementIndex += 1; // increment the index
+
+
                 //Debug.Log(items[i].itemName, items[i].itemQuantity);
             }
         }
     }
-
-    //loop through each item in the inventory
-    //check the item name and item quantity and display appropriately
-    //in the future, have images that display if the object has an image
 }
 
 
