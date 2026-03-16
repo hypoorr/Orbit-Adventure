@@ -61,7 +61,7 @@ public class TerrainGenerator : MonoBehaviour
     float[,] GenerateHeights() // build the heights of the terrain
     {
         float[,] heights = new float[width, height];
-        for (int x=0; x < width; x++)
+        for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
