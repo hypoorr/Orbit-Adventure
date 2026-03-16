@@ -23,14 +23,14 @@ public class Craftables : MonoBehaviour
             
         }
 
-            if (stone >= 2 && gold >= 1) // if requirements are met, remove resource and grant item
+            if (Inventory.items[stone].itemQuantity >= 2 && Inventory.items[gold].itemQuantity >= 1) // if requirements are met, remove resource and grant item
             {
                 Debug.Log("Crafting fuel");
                 Inventory.items[stone].itemQuantity -= 2;
                 Inventory.items[gold].itemQuantity -= 1;
 
                 inventory.AddItem("Fuel (L)", 4);
-                
+
             }
             else
             {
