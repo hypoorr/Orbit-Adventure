@@ -7,8 +7,8 @@ public class TerrainGenerator : MonoBehaviour
 
     public float depth = 20;
 
-    public int width = 1000;
-    public int height = 1000;
+    public int width = 800;
+    public int height = 800;
 
     private float xTerrainPos;
     private float zTerrainPos;
@@ -97,7 +97,8 @@ public class TerrainGenerator : MonoBehaviour
         Rigidbody rb = shipModel.AddComponent<Rigidbody>();
 
         rb.mass = 100000;
-;
+        rb.angularDamping = 2f;  // Angular drag (affects the object's ability to rotate)
+        ;
         yield return new WaitForSeconds(4f);
 
         Destroy(rb);
@@ -109,8 +110,8 @@ public class TerrainGenerator : MonoBehaviour
 
 
         //spawn gold block
-        randX += Random.Range(-100,100);
-        randZ += Random.Range(-100,100);
+        randX += Random.Range(-100, 100);
+        randZ += Random.Range(-100, 100);
         yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ));
         yVal += 3f;
         Instantiate(prefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
@@ -129,8 +130,8 @@ public class TerrainGenerator : MonoBehaviour
             Instantiate(enemyPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
             yield return new WaitForSeconds(0.01f);
         }
-        
-        
+
+
     }
 }
 
