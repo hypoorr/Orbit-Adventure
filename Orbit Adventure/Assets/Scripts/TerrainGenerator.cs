@@ -33,6 +33,7 @@ public class TerrainGenerator : MonoBehaviour
         loadingScreen.SetActive(true);
         //define the seed and get the terrain to begin generation
         seed = Random.Range(0, 1000);
+        Random.InitState(Mathf.RoundToInt(seed));
         depth = seed / 30f + 5f;
         Terrain terrain = GetComponent<Terrain>();
         terrain.terrainData = GenerateTerrain(terrain.terrainData);
