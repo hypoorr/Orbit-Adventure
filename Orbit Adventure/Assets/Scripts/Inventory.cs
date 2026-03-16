@@ -28,17 +28,12 @@ public class Inventory : MonoBehaviour
     private int currentColumn = 0;
 
     private TextMeshProUGUI itemNameText;
+    private TextMeshProUGUI itemQuantityText;
 
 
     void Start()
     {
-        items.Add(new InventoryItem { itemName = "Stone", itemQuantity = 1 }); // adds an item "Stone" to inventory with 1 quantity
-        items.Add(new InventoryItem { itemName = "Fuel (L)", itemQuantity = 5 });
-        items.Add(new InventoryItem { itemName = "Gold", itemQuantity = 99 });
-        items.Add(new InventoryItem { itemName = "Silver", itemQuantity = 6 });
-        items.Add(new InventoryItem { itemName = "Martian rock", itemQuantity = 6 });
-        items.Add(new InventoryItem { itemName = "Energy ore", itemQuantity = 6 });
-        Debug.Log(items[0].itemName); // will log "Stone"
+
     }
 
     void Update()
@@ -64,14 +59,11 @@ public class Inventory : MonoBehaviour
         }
 
 
-        //copy inventory item element
-        //locate item name text and set itemname on it
-        //locate item quantity text and set itemquantity on it
 
 
-        void UpdateInventoryDisplay()
+    }
+        public void UpdateInventoryDisplay()
         {
-
             elementIndex = 0;
             currentRow = 0;
             foreach (GameObject i in itemElementList) // destroy previous inventory elements
@@ -80,7 +72,7 @@ public class Inventory : MonoBehaviour
             }
             foreach (InventoryItem i in items) // for each inventory item, create a element on the UI for it
             {
-                //Debug.Log(i.itemName + " " + i.itemQuantity);
+
                 GameObject newElement = Instantiate(itemElement, inventoryBG, true);
                 RectTransform rect = newElement.GetComponent<RectTransform>();
 
@@ -91,19 +83,51 @@ public class Inventory : MonoBehaviour
                 itemNameText = newElement.transform.Find("ItemNameText").GetComponent<TMPro.TextMeshProUGUI>();
                 itemNameText.text = i.itemName;
 
+                itemQuantityText = newElement.transform.Find("ItemQuantityText").GetComponent<TMPro.TextMeshProUGUI>();
+                itemQuantityText.text = i.itemQuantity.ToString() + "x";
+
 
                 rect.anchoredPosition = new Vector2(20 * currentColumn - 2.5f, currentRow * -30);
 
                 newElement.SetActive(true);
                 itemElementList.Add(newElement); // add element to the list
                 elementIndex += 1; // increment the index
-                Debug.Log(elementIndex);
-
-
-                //Debug.Log(items[i].itemName, items[i].itemQuantity);
             }
         }
-    }
+
+
+        public void AddItem(string addedItemName, int addedItemQuantity)
+        {
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].itemName == addedItemName) // if inventory already contains this, try add to the stack
+                {
+                    if (items[i].itemQuantity + addedItemQuantity > 99) // if adding this overflows the stack, finish the stack
+                    {
+                        items[i].itemQuantity = 99;
+                    }
+                    else // if stack isnt full, add item
+                    {
+                        items[i].itemQuantity += addedItemQuantity;
+                    }
+                }
+            }
+
+            {
+
+                for (int i = 0; i < items.Count; i++)
+                {
+                    if (items[i].itemName.Contains(addedItemName))
+                    {
+                        return;
+                    }
+                }
+                // if inventory doesnt contain new item, add it
+                items.Add(new InventoryItem { itemName = addedItemName, itemQuantity = addedItemQuantity });
+
+            }
+
+        }
 }
 
 
