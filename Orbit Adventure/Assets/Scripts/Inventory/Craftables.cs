@@ -8,6 +8,8 @@ public class Craftables : MonoBehaviour
 
     int stone;
     int gold;
+    int diamond;
+
     public void CraftFuel()
     {
         for (int i = 0; i < Inventory.items.Count; i++)
@@ -29,7 +31,37 @@ public class Craftables : MonoBehaviour
                 Inventory.items[stone].itemQuantity -= 2;
                 Inventory.items[gold].itemQuantity -= 1;
 
-                inventory.AddItem("Fuel (L)", 4);
+                inventory.AddItem("Fuel (L)", 4, false);
+
+            }
+            else
+            {
+                Debug.Log("too broke");
+            }
+    }
+
+   public void CraftScanner()
+    {
+        for (int i = 0; i < Inventory.items.Count; i++)
+        {
+            if (Inventory.items[i].itemName == "Diamond")
+            {
+                diamond = i;
+            }
+            if (Inventory.items[i].itemName == "Gold")
+            {
+                gold = i;
+            }
+            
+        }
+
+            if (Inventory.items[diamond].itemQuantity >= 1 && Inventory.items[gold].itemQuantity >= 3) // if requirements are met, remove resource and grant item
+            {
+                Debug.Log("Crafting fuel");
+                Inventory.items[diamond].itemQuantity -= 1;
+                Inventory.items[gold].itemQuantity -= 3;
+
+                inventory.AddItem("Scanner", 1, true); // true means the item is a tool
 
             }
             else

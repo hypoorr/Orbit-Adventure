@@ -9,6 +9,6 @@ public class InventoryTest : Interactable
     protected override void Interact()
     {
         Debug.Log("Interacted with " + gameObject.name);
-        inventory.AddItem(itemToGive, 1);
+        inventory.AddItem(itemToGive, 1, false);
     }
 }

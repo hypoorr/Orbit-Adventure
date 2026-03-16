@@ -34,5 +34,11 @@ public class InventoryState : MonoBehaviour
                 craftablesList.SetActive(false);
             }
         }
+
+        if (currentState == "Index")
+        {
+            itemList.SetActive(false);
+            craftablesList.SetActive(false);
+        }
     }
 }

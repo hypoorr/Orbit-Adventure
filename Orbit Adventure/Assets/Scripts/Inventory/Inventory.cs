@@ -8,6 +8,7 @@ public class InventoryItem // inventory item layout
 {
     public string itemName;
     public int itemQuantity;
+    public bool isTool;
 }
 
 
@@ -93,6 +94,11 @@ public class Inventory : MonoBehaviour
                 itemQuantityText = newElement.transform.Find("ItemQuantityText").GetComponent<TMPro.TextMeshProUGUI>();
                 itemQuantityText.text = i.itemQuantity.ToString() + "x";
 
+                if (i.isTool)
+                {
+                    newElement.transform.Find("EquipButton").gameObject.SetActive(true);
+                }
+
 
                 rect.anchoredPosition = new Vector2(20 * currentColumn - 2.5f, currentRow * -30);
 
@@ -103,7 +109,7 @@ public class Inventory : MonoBehaviour
         }
 
 
-        public void AddItem(string addedItemName, int addedItemQuantity)
+        public void AddItem(string addedItemName, int addedItemQuantity, bool addedItemIsTool)
         {
             for (int i = 0; i < items.Count; i++)
             {
@@ -130,7 +136,7 @@ public class Inventory : MonoBehaviour
                     }
                 }
                 // if inventory doesnt contain new item, add it
-                items.Add(new InventoryItem { itemName = addedItemName, itemQuantity = addedItemQuantity });
+                items.Add(new InventoryItem { itemName = addedItemName, itemQuantity = addedItemQuantity, isTool = addedItemIsTool });
 
             }
 
