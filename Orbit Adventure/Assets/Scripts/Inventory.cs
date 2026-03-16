@@ -57,10 +57,17 @@ public class Inventory : MonoBehaviour
             }
 
         }
+    }
 
-
-
-
+    void FixedUpdate()
+    {
+        for (int i = 0; i < items.Count; i++) // check if resource has 0 quantity and deletes it
+        {
+            if (items[i].itemQuantity <= 0)
+            {
+                items.RemoveAt(i);
+            }
+        }
     }
         public void UpdateInventoryDisplay()
         {
