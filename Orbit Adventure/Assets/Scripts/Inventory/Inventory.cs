@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Events;
+using UnityEngine.UI;
 using Unity.VisualScripting;
 using TMPro;
 
@@ -30,6 +32,8 @@ public class Inventory : MonoBehaviour
 
     private TextMeshProUGUI itemNameText;
     private TextMeshProUGUI itemQuantityText;
+
+    public string equippedItem;
 
 
     void Start()
@@ -97,12 +101,14 @@ public class Inventory : MonoBehaviour
                 if (i.isTool)
                 {
                     newElement.transform.Find("EquipButton").gameObject.SetActive(true);
+                    newElement.transform.Find("EquipButton").GetComponent<Button>().onClick.AddListener(delegate {EquipItem(i.itemName); });
                 }
 
 
                 rect.anchoredPosition = new Vector2(20 * currentColumn - 2.5f, currentRow * -30);
 
                 newElement.SetActive(true);
+                newElement.name = i.itemName;
                 itemElementList.Add(newElement); // add element to the list
                 elementIndex += 1; // increment the index
             }
@@ -140,6 +146,13 @@ public class Inventory : MonoBehaviour
 
             }
 
+        }
+
+        public void EquipItem(string itemEquipped)
+        {
+            equippedItem = itemEquipped;
+
+            Debug.Log(equippedItem);
         }
 }
 

@@ -600,6 +600,7 @@ MonoBehaviour:
   itemElement: {fileID: 1229735383}
   inventoryUI: {fileID: 1322891734}
   inventoryBG: {fileID: 1290238681}
+  equippedItem: 
 --- !u!1 &143796631 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8578709097331664583, guid: 75d5e0b3fdf83d74f9795cce39147526, type: 3}
@@ -5412,7 +5413,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2004555874}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2004555874
 MonoBehaviour:
   m_ObjectHideFlags: 0
