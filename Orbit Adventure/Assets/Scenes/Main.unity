@@ -4499,7 +4499,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2126768016}
         m_TargetAssemblyTypeName: InventoryState, Assembly-CSharp
         m_MethodName: SetState
         m_Mode: 5
