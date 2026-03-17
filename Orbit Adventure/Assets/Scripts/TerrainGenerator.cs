@@ -85,8 +85,8 @@ public class TerrainGenerator : MonoBehaviour
     IEnumerator PositionShip()
     {
         //Generate random x,y,z position on the terrain
-        float randX = Random.Range(xTerrainPos, xTerrainPos + width);
-        float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
+        float randX = Random.Range(-500, 500); //xTerrainPos, xTerrainPos + width);
+        float randZ = Random.Range(-500, 500);//zTerrainPos, zTerrainPos + height);
         float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ));
 
         //Apply Offset
