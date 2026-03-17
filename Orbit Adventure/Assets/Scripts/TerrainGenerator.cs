@@ -15,7 +15,7 @@ public class TerrainGenerator : MonoBehaviour
 
     public GameObject prefab;
     public GameObject rockPrefab;
-
+    public GameObject diamondPrefab;
     public float scale = 20f;
 
     [SerializeField] private GameObject shipModel;
@@ -46,6 +46,7 @@ public class TerrainGenerator : MonoBehaviour
 
         StartCoroutine(PositionShip());
         StartCoroutine(SpawnRocks());
+        StartCoroutine(SpawnDiamonds());
 
 
     }
@@ -129,6 +130,22 @@ public class TerrainGenerator : MonoBehaviour
             yVal += 2f;
 
             Instantiate(rockPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
+            yield return new WaitForSeconds(0.01f);
+        }
+
+
+    }
+
+    IEnumerator SpawnDiamonds()
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            float randX = Random.Range(xTerrainPos, xTerrainPos + width);
+            float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
+            float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ));
+            yVal += 2f;
+
+            Instantiate(diamondPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
             yield return new WaitForSeconds(0.01f);
         }
 

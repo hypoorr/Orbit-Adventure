@@ -33,7 +33,7 @@ public class Inventory : MonoBehaviour
     private TextMeshProUGUI itemNameText;
     private TextMeshProUGUI itemQuantityText;
 
-    public string equippedItem;
+    public static string equippedItem;
 
 
     void Start()

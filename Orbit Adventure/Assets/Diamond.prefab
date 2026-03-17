@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2742269712126285852}
   - component: {fileID: 67308808228557682}
   m_Layer: 0
-  m_Name: Cube (2) 1
+  m_Name: Diamond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 38504d35a7201f9419888334e33600c4, type: 2}
+  - {fileID: 2100000, guid: eedd9ea72cc19eb41abcdd7adb844285, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -121,5 +121,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e45699e02968b9e459d4830cfac0e1a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptMessage: Break stone (LMB)
-  resourceToGrant: Stone
+  promptMessage: Break diamond (LMB)
+  resourceToGrant: Diamond
