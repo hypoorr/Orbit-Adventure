@@ -31,7 +31,7 @@ public class Craftables : MonoBehaviour
                 Inventory.items[stone].itemQuantity -= 2;
                 Inventory.items[gold].itemQuantity -= 1;
 
-                inventory.AddItem("Fuel (L)", 4, false);
+                Inventory.AddItem("Fuel (L)", 4, false);
 
             }
             else
@@ -61,7 +61,7 @@ public class Craftables : MonoBehaviour
                 Inventory.items[diamond].itemQuantity -= 1;
                 Inventory.items[gold].itemQuantity -= 3;
 
-                inventory.AddItem("Scanner", 1, true); // true means the item is a tool
+                Inventory.AddItem("Scanner", 1, true); // true means the item is a tool
 
             }
             else

@@ -14,7 +14,7 @@ public class TerrainGenerator : MonoBehaviour
     private float zTerrainPos;
 
     public GameObject prefab;
-    public GameObject enemyPrefab;
+    public GameObject rockPrefab;
 
     public float scale = 20f;
 
@@ -45,7 +45,7 @@ public class TerrainGenerator : MonoBehaviour
         zTerrainPos = terrain.transform.position.z;
 
         StartCoroutine(PositionShip());
-        StartCoroutine(SpawnEnemies());
+        StartCoroutine(SpawnRocks());
 
 
     }
@@ -85,8 +85,8 @@ public class TerrainGenerator : MonoBehaviour
     IEnumerator PositionShip()
     {
         //Generate random x,y,z position on the terrain
-        float randX = Random.Range(-500, 500); //xTerrainPos, xTerrainPos + width);
-        float randZ = Random.Range(-500, 500);//zTerrainPos, zTerrainPos + height);
+        float randX = Random.Range(xTerrainPos, xTerrainPos + width); //xTerrainPos, xTerrainPos + width);
+        float randZ = Random.Range(zTerrainPos, zTerrainPos + height);//zTerrainPos, zTerrainPos + height);
         float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ));
 
         //Apply Offset
@@ -119,16 +119,16 @@ public class TerrainGenerator : MonoBehaviour
 
     }
 
-    IEnumerator SpawnEnemies()
+    IEnumerator SpawnRocks()
     {
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 200; i++)
         {
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
             float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
             float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ));
             yVal += 2f;
 
-            Instantiate(enemyPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
+            Instantiate(rockPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
             yield return new WaitForSeconds(0.01f);
         }
 

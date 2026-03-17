@@ -39,6 +39,16 @@ public class PlayerInteract : MonoBehaviour
                     interactable.BaseInteract();
                 }
             }
+
+            if (hitInfo.collider.GetComponent<Breakable>() != null) // check if ray hits a breakable object
+            {
+                Breakable breakable = hitInfo.collider.GetComponent<Breakable>();
+                playerUI.UpdateText(breakable.promptMessage); // update interact prompt text
+                if (inputManager.onFoot.Break.triggered) // if interact is pressed, run breakable script
+                {
+                    breakable.BaseInteract();
+                }
+            }            
         }
 
     }

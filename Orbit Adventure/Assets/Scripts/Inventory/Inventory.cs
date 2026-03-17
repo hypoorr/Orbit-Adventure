@@ -101,7 +101,7 @@ public class Inventory : MonoBehaviour
                 if (i.isTool)
                 {
                     newElement.transform.Find("EquipButton").gameObject.SetActive(true);
-                    newElement.transform.Find("EquipButton").GetComponent<Button>().onClick.AddListener(delegate {EquipItem(i.itemName); });
+                    newElement.transform.Find("EquipButton").GetComponent<Button>().onClick.AddListener(delegate {EquipItem(i.itemName); }); // add listener to the button to equip the item
                 }
 
 
@@ -115,7 +115,7 @@ public class Inventory : MonoBehaviour
         }
 
 
-        public void AddItem(string addedItemName, int addedItemQuantity, bool addedItemIsTool)
+        public static void AddItem(string addedItemName, int addedItemQuantity, bool addedItemIsTool)
         {
             for (int i = 0; i < items.Count; i++)
             {
