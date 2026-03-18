@@ -127,7 +127,7 @@ public class TerrainGenerator : MonoBehaviour
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
             float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
             float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ));
-            yVal += 2f;
+            yVal += 1f;
 
             Instantiate(rockPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
             yield return new WaitForSeconds(0.01f);
@@ -143,7 +143,7 @@ public class TerrainGenerator : MonoBehaviour
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
             float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
             float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ));
-            yVal += 2f;
+            yVal += 1f;
 
             Instantiate(diamondPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
             yield return new WaitForSeconds(0.01f);
