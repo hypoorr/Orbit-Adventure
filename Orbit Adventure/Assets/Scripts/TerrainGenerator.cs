@@ -62,10 +62,10 @@ public class TerrainGenerator : MonoBehaviour
 
     float[,] GenerateHeights() // build the heights of the terrain
     {
-        float[,] heights = new float[width, height];
-        for (int x = 0; x < width; x++)
+        float[,] heights = new float[width + 1, height + 1];
+        for (int x = 0; x <= width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y <= height; y++)
             {
                 heights[x, y] = CalculateHeight(x, y);
             }
@@ -86,9 +86,9 @@ public class TerrainGenerator : MonoBehaviour
     IEnumerator PositionShip()
     {
         //Generate random x,y,z position on the terrain
-        float randX = Random.Range(xTerrainPos, xTerrainPos + width); //xTerrainPos, xTerrainPos + width);
-        float randZ = Random.Range(zTerrainPos, zTerrainPos + height);//zTerrainPos, zTerrainPos + height);
-        float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ));
+        float randX = width / 2f;//Random.Range(xTerrainPos, xTerrainPos + width); //xTerrainPos, xTerrainPos + width);
+        float randZ = height / 2f;//Random.Range(zTerrainPos, zTerrainPos + height);//zTerrainPos, zTerrainPos + height);
+        float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(0, 0, 0));
 
         //Apply Offset
         yVal = yVal + 8f;
