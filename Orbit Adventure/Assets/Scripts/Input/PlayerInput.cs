@@ -136,6 +136,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Scan"",
+                    ""type"": ""Button"",
+                    ""id"": ""2c596d5a-464e-4b0e-ba5b-12aa65c00e7c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -235,6 +244,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Break"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a6cc2985-7961-404c-985a-37b6a6ebb2dd"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scan"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -766,6 +786,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_OnFoot_Look = m_OnFoot.FindAction("Look", throwIfNotFound: true);
         m_OnFoot_Interact = m_OnFoot.FindAction("Interact", throwIfNotFound: true);
         m_OnFoot_Break = m_OnFoot.FindAction("Break", throwIfNotFound: true);
+        m_OnFoot_Scan = m_OnFoot.FindAction("Scan", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -864,6 +885,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_OnFoot_Look;
     private readonly InputAction m_OnFoot_Interact;
     private readonly InputAction m_OnFoot_Break;
+    private readonly InputAction m_OnFoot_Scan;
     /// <summary>
     /// Provides access to input actions defined in input action map "OnFoot".
     /// </summary>
@@ -895,6 +917,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "OnFoot/Break".
         /// </summary>
         public InputAction @Break => m_Wrapper.m_OnFoot_Break;
+        /// <summary>
+        /// Provides access to the underlying input action "OnFoot/Scan".
+        /// </summary>
+        public InputAction @Scan => m_Wrapper.m_OnFoot_Scan;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -936,6 +962,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Break.started += instance.OnBreak;
             @Break.performed += instance.OnBreak;
             @Break.canceled += instance.OnBreak;
+            @Scan.started += instance.OnScan;
+            @Scan.performed += instance.OnScan;
+            @Scan.canceled += instance.OnScan;
         }
 
         /// <summary>
@@ -962,6 +991,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Break.started -= instance.OnBreak;
             @Break.performed -= instance.OnBreak;
             @Break.canceled -= instance.OnBreak;
+            @Scan.started -= instance.OnScan;
+            @Scan.performed -= instance.OnScan;
+            @Scan.canceled -= instance.OnScan;
         }
 
         /// <summary>
@@ -1232,6 +1264,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnBreak(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Scan" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnScan(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

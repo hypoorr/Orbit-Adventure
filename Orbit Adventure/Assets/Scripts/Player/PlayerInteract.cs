@@ -48,7 +48,20 @@ public class PlayerInteract : MonoBehaviour
                 {
                     breakable.BaseInteract();
                 }
-            }            
+            }
+
+            if (hitInfo.collider.GetComponent<Scannable>() != null) // check if ray hits a scannable object
+            {
+                Scannable scannable = hitInfo.collider.GetComponent<Scannable>();
+                if (inputManager.onFoot.Scan.triggered) // if interact is pressed, check if scanner is held, if it is then scan it.
+                {
+                    if(Inventory.equippedItem == "Scanner")
+                    {
+                        scannable.BaseInteract();
+                    }
+                    
+                }
+            }                        
         }
 
     }
