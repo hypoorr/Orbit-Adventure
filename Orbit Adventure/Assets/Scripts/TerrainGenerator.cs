@@ -47,6 +47,7 @@ public class TerrainGenerator : MonoBehaviour
 
         StartCoroutine(PositionShip());
         StartCoroutine(SpawnRocks());
+        StartCoroutine(SpawnGold());
         if (Random.Range(1,5) == 1)
         {
             StartCoroutine(SpawnDiamonds());

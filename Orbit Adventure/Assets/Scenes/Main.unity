@@ -7749,7 +7749,7 @@ MonoBehaviour:
   prefab: {fileID: 5227282673870253036, guid: 59aed8c3a9138a747a206cf218b14e3c, type: 3}
   rockPrefab: {fileID: 7768120273201628004, guid: 363d93609cc4362489e0cb4a9b22ba42, type: 3}
   diamondPrefab: {fileID: 7768120273201628004, guid: 01bc2709067e8244aae561044368b51b, type: 3}
-  goldPrefab: {fileID: 0}
+  goldPrefab: {fileID: 7768120273201628004, guid: 3922373120150e440a38f662a601bf64, type: 3}
   scale: 20
   shipModel: {fileID: 1542712503}
   playerModel: {fileID: 1024666199}
