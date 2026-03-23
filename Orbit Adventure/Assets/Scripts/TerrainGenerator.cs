@@ -48,11 +48,11 @@ public class TerrainGenerator : MonoBehaviour
         StartCoroutine(PositionShip());
         StartCoroutine(SpawnRocks());
         StartCoroutine(SpawnGold());
-        if (Random.Range(1,5) == 1)
+        if (Random.Range(1, 5) == 1)
         {
             StartCoroutine(SpawnDiamonds());
         }
-        
+
 
 
     }
@@ -133,7 +133,7 @@ public class TerrainGenerator : MonoBehaviour
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
             float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
             float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ));
-            yVal += 1f;
+            yVal += 0.5f;
 
             Instantiate(rockPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
             yield return new WaitForSeconds(0.01f);
