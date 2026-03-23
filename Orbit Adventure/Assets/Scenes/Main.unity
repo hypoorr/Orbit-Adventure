@@ -7564,6 +7564,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1249263073}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5be3e1399f5509640b96df2934e23ef6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1542712505}
     - targetCorrespondingSourceObject: {fileID: -8391222552659086748, guid: 5be3e1399f5509640b96df2934e23ef6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 624152935}
@@ -7675,6 +7678,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7333631254909853010, guid: 5be3e1399f5509640b96df2934e23ef6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2087518529}
+    - targetCorrespondingSourceObject: {fileID: 7333631254909853010, guid: 5be3e1399f5509640b96df2934e23ef6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2087518533}
     - targetCorrespondingSourceObject: {fileID: 8513859187771203891, guid: 5be3e1399f5509640b96df2934e23ef6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1345080388}
@@ -7728,6 +7734,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5be3e1399f5509640b96df2934e23ef6, type: 3}
   m_PrefabInstance: {fileID: 1542712502}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1542712505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542712503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d589bcc069213c542809827a5afb056f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1549636462
 GameObject:
   m_ObjectHideFlags: 0
@@ -8480,6 +8498,7 @@ GameObject:
   - component: {fileID: 1708628323}
   - component: {fileID: 1708628322}
   - component: {fileID: 1708628321}
+  - component: {fileID: 1708628325}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -8505,7 +8524,7 @@ MonoBehaviour:
   prefab: {fileID: 5227282673870253036, guid: 59aed8c3a9138a747a206cf218b14e3c, type: 3}
   rockPrefab: {fileID: 571576774796714241, guid: 7e70f6d34bc367b4ba8026dcec60baa6, type: 3}
   diamondPrefab: {fileID: 7768120273201628004, guid: 01bc2709067e8244aae561044368b51b, type: 3}
-  goldPrefab: {fileID: 7768120273201628004, guid: 3922373120150e440a38f662a601bf64, type: 3}
+  goldPrefab: {fileID: 1352406866100811147, guid: 4c390819d9bdb6949bd96dd8579a05fa, type: 3}
   scale: 20
   shipModel: {fileID: 1542712503}
   playerModel: {fileID: 1024666199}
@@ -8586,6 +8605,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1708628325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708628320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca20f4582a9322d4aaf42215fffa4c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 0.2
 --- !u!1 &1716961790
 GameObject:
   m_ObjectHideFlags: 0
@@ -10543,6 +10575,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.020000001, y: 0.019999994, z: 0.019999994}
   m_Center: {x: 0, y: 0, z: 0.000000059604645}
+--- !u!114 &2087518533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087518521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e80d09b0659040b4a8582a8f4578f348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  promptMessage: E to add fuel
 --- !u!1 &2089375898
 GameObject:
   m_ObjectHideFlags: 0
@@ -11073,7 +11118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2126768014
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11126,6 +11171,7 @@ MonoBehaviour:
   stoneInfo: {fileID: 1960041994}
   diamondInfo: {fileID: 1691898364}
   shipInfo: {fileID: 1015069687}
+  goldInfo: {fileID: 353553645}
   inventory: {fileID: 1024666200}
 --- !u!1 &2131290933
 GameObject:

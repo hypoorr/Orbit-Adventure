@@ -13,10 +13,27 @@ public class NewWorldButton : Interactable
         {
             SceneManager.LoadScene("Main");
         }
-        else if (SceneManager.GetActiveScene().name == "Main") // if on the planet, send back into orbit
+        else if (ShipFuel.shipFuel >= 2) // check if player has enough fuel
         {
-            SceneManager.LoadScene("InsideShip");
+            if(SceneManager.GetActiveScene().name == "Main") // if on the planet, send back into orbit
+            {
+                SceneManager.LoadScene("InsideShip");
+                ShipFuel.shipFuel -= 2;
+            }
+            
         }
         
+    }
+
+    void FixedUpdate()
+    {
+        if(SceneManager.GetActiveScene().name == "Main")
+        {
+            promptMessage = "back into orbit (E)\nFuel: " + ShipFuel.shipFuel + "L";
+        }
+        else
+        {
+            promptMessage = "Land ship";
+        }
     }
 }

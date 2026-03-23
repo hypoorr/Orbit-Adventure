@@ -10,6 +10,8 @@ public class InventoryState : MonoBehaviour
     public GameObject stoneInfo;
     public GameObject diamondInfo;
     public GameObject shipInfo;
+    public GameObject goldInfo;
+
     [SerializeField] private Inventory inventory;
 
     public void SetState(string state)
@@ -30,6 +32,7 @@ public class InventoryState : MonoBehaviour
                 diamondInfo.SetActive(false);
                 stoneInfo.SetActive(false);
                 shipInfo.SetActive(false);
+                goldInfo.SetActive(false);
             }
 
         }
@@ -44,6 +47,7 @@ public class InventoryState : MonoBehaviour
                 diamondInfo.SetActive(false);
                 stoneInfo.SetActive(false);
                 shipInfo.SetActive(false);
+                goldInfo.SetActive(false);
             }
         }
 
@@ -55,6 +59,7 @@ public class InventoryState : MonoBehaviour
             diamondInfo.SetActive(false);
             stoneInfo.SetActive(false);
             shipInfo.SetActive(false);
+            goldInfo.SetActive(false);
         }
         if (currentState == "StoneInfo")
         {
@@ -76,6 +81,13 @@ public class InventoryState : MonoBehaviour
             craftablesList.SetActive(false);
             indexButtons.SetActive(false);
             shipInfo.SetActive(true);
+        }
+        if (currentState == "GoldInfo")
+        {
+            itemList.SetActive(false);
+            craftablesList.SetActive(false);
+            indexButtons.SetActive(false);
+            goldInfo.SetActive(true);
         }
     }
 }

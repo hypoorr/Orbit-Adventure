@@ -35,7 +35,7 @@ public class TerrainGenerator : MonoBehaviour
         //define the seed and get the terrain to begin generation
         seed = Random.Range(0, 1000);
         Random.InitState(Mathf.RoundToInt(seed));
-        depth = seed / 40f;
+        depth = seed / 35f;
         Terrain terrain = GetComponent<Terrain>();
         terrain.terrainData = GenerateTerrain(terrain.terrainData);
         Debug.Log(depth);
@@ -128,7 +128,7 @@ public class TerrainGenerator : MonoBehaviour
 
     IEnumerator SpawnRocks()
     {
-        for (int i = 0; i < 200; i++)
+        for (int i = 0; i < 250; i++)
         {
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
             float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
@@ -144,7 +144,7 @@ public class TerrainGenerator : MonoBehaviour
 
     IEnumerator SpawnDiamonds()
     {
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 25; i++)
         {
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
             float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
@@ -159,12 +159,12 @@ public class TerrainGenerator : MonoBehaviour
     }
     IEnumerator SpawnGold()
     {
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 50; i++)
         {
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
             float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
             float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ));
-            yVal += 1f;
+            yVal += 0.4f;
 
             Instantiate(goldPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
             yield return new WaitForSeconds(0.01f);
