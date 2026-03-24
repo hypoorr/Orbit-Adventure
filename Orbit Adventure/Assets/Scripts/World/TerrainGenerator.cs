@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 
 public class TerrainGenerator : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class TerrainGenerator : MonoBehaviour
     public GameObject rockPrefab;
     public GameObject diamondPrefab;
     public GameObject goldPrefab;
+    public GameObject enemyPrefab;
+
+    public NavMeshSurface navMeshSurface;
+    public PlayerMotor player;
+
     public float scale = 20f;
 
     [SerializeField] private GameObject shipModel;
@@ -48,10 +54,35 @@ public class TerrainGenerator : MonoBehaviour
         StartCoroutine(PositionShip());
         StartCoroutine(SpawnRocks());
         StartCoroutine(SpawnGold());
-        if (Random.Range(1, 5) == 1)
+
+
+
+        // RANDOM EVENTS
+
+        if (Random.Range(1, 10) == 1) // 1/10 chance for enemies
+        {
+            StartCoroutine(SpawnEnemy());
+        }
+        
+
+
+        if (Random.Range(1, 5) == 1) // 1/5 chance to spawn diamonds
         {
             StartCoroutine(SpawnDiamonds());
         }
+
+        // 1/5 chance for random gravity
+        if (Random.Range(1, 5) == 1)
+        {
+            player.gravity = Random.Range(-12f, -2f);
+            Debug.Log(player.gravity);
+        }
+        else // default to normal gravity if not randomized
+        {
+            player.gravity = -9.8f;
+        }
+
+        navMeshSurface.BuildNavMesh();
 
 
 
@@ -97,7 +128,7 @@ public class TerrainGenerator : MonoBehaviour
         float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(0, 0, 0));
 
         //Apply Offset
-        yVal = yVal + 8f;
+        yVal = yVal + 12f;
 
         //move the ship to the random position
         shipModel.transform.position = new Vector3(randX, yVal, randZ);
@@ -167,6 +198,23 @@ public class TerrainGenerator : MonoBehaviour
             yVal += 0.4f;
 
             Instantiate(goldPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
+            yield return new WaitForSeconds(0.01f);
+        }
+
+
+    }
+
+    IEnumerator SpawnEnemy()
+    {
+        for (int i = 0; i < 15; i++)
+        {
+            float randX = Random.Range(xTerrainPos, xTerrainPos + width);
+            float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
+            float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ));
+            yVal += 0.4f;
+
+            GameObject newEnemy = Instantiate(enemyPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
+            newEnemy.SetActive(true);
             yield return new WaitForSeconds(0.01f);
         }
 

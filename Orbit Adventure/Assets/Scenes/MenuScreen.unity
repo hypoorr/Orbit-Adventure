@@ -275,7 +275,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 5be3e1399f5509640b96df2934e23ef6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.5
+      value: 17.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5be3e1399f5509640b96df2934e23ef6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -287,31 +287,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5be3e1399f5509640b96df2934e23ef6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6652663
+      value: 0.6707061
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5be3e1399f5509640b96df2934e23ef6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.068979114
+      value: 0.021571372
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5be3e1399f5509640b96df2934e23ef6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.735806
+      value: -0.73871744
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5be3e1399f5509640b96df2934e23ef6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.10607698
+      value: 0.0631238
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5be3e1399f5509640b96df2934e23ef6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 14.352
+      value: 7.019
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5be3e1399f5509640b96df2934e23ef6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -95.469
+      value: -95.338
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5be3e1399f5509640b96df2934e23ef6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 2.344
+      value: 3.05
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5be3e1399f5509640b96df2934e23ef6, type: 3}
       propertyPath: m_Name
@@ -1591,7 +1591,7 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 40
+      scalar: 50
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -6424,7 +6424,7 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 40
+      scalar: 50
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -11530,7 +11530,7 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 40
+      scalar: 50
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -16447,7 +16447,7 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 40
+      scalar: 50
       minScalar: 1
       maxCurve:
         serializedVersion: 2
