@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class NewWorldButton : Interactable
 {
+    public GameObject loadingScreen;
 
 
     protected override void Interact()
@@ -11,6 +12,7 @@ public class NewWorldButton : Interactable
 
         if (SceneManager.GetActiveScene().name == "InsideShip") // if inside the ship, travel to planet
         {
+            loadingScreen.SetActive(true);
             SceneManager.LoadScene("Main");
         }
         else if (ShipFuel.shipFuel >= 2) // check if player has enough fuel

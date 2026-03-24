@@ -11,6 +11,7 @@ public class InventoryState : MonoBehaviour
     public GameObject diamondInfo;
     public GameObject shipInfo;
     public GameObject goldInfo;
+    public GameObject flizianInfo;
 
     [SerializeField] private Inventory inventory;
 
@@ -33,6 +34,7 @@ public class InventoryState : MonoBehaviour
                 stoneInfo.SetActive(false);
                 shipInfo.SetActive(false);
                 goldInfo.SetActive(false);
+                flizianInfo.SetActive(false);
             }
 
         }
@@ -48,6 +50,7 @@ public class InventoryState : MonoBehaviour
                 stoneInfo.SetActive(false);
                 shipInfo.SetActive(false);
                 goldInfo.SetActive(false);
+                flizianInfo.SetActive(false);
             }
         }
 
@@ -60,6 +63,7 @@ public class InventoryState : MonoBehaviour
             stoneInfo.SetActive(false);
             shipInfo.SetActive(false);
             goldInfo.SetActive(false);
+            flizianInfo.SetActive(false);
         }
         if (currentState == "StoneInfo")
         {
@@ -88,6 +92,13 @@ public class InventoryState : MonoBehaviour
             craftablesList.SetActive(false);
             indexButtons.SetActive(false);
             goldInfo.SetActive(true);
+        }
+        if (currentState == "FlizianInfo")
+        {
+            itemList.SetActive(false);
+            craftablesList.SetActive(false);
+            indexButtons.SetActive(false);
+            flizianInfo.SetActive(true);
         }
     }
 }

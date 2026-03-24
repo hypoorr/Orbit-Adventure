@@ -159,7 +159,7 @@ public class TerrainGenerator : MonoBehaviour
 
     IEnumerator SpawnRocks()
     {
-        for (int i = 0; i < 250; i++)
+        for (int i = 0; i < 350; i++)
         {
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
             float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
@@ -175,7 +175,7 @@ public class TerrainGenerator : MonoBehaviour
 
     IEnumerator SpawnDiamonds()
     {
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < 40; i++)
         {
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
             float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
@@ -190,7 +190,7 @@ public class TerrainGenerator : MonoBehaviour
     }
     IEnumerator SpawnGold()
     {
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 75; i++)
         {
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
             float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
@@ -206,7 +206,7 @@ public class TerrainGenerator : MonoBehaviour
 
     IEnumerator SpawnEnemy()
     {
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 30; i++)
         {
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
             float randZ = Random.Range(zTerrainPos, zTerrainPos + height);

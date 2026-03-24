@@ -25,7 +25,7 @@ public class Craftables : MonoBehaviour
             
         }
 
-            if (Inventory.items[stone].itemQuantity >= 2 && Inventory.items[gold].itemQuantity >= 1) // if requirements are met, remove resource and grant item
+            if (Inventory.items[stone].itemQuantity >= 2 && Inventory.items[stone].itemName == "Stone" && Inventory.items[gold].itemQuantity >= 1 && Inventory.items[gold].itemName == "Gold") // if requirements are met, remove resource and grant item
             {
                 Debug.Log("Crafting fuel");
                 Inventory.items[stone].itemQuantity -= 2;
@@ -52,12 +52,11 @@ public class Craftables : MonoBehaviour
             {
                 gold = i;
             }
-            
-        }
 
-            if (Inventory.items[diamond].itemQuantity >= 1 && Inventory.items[gold].itemQuantity >= 3) // if requirements are met, remove resource and grant item
+        }
+            if (Inventory.items[diamond].itemQuantity >= 1 && Inventory.items[diamond].itemName == "Diamond" && Inventory.items[gold].itemQuantity >= 3 && Inventory.items[gold].itemName == "Gold") // if requirements are met, remove resource and grant item
             {
-                Debug.Log("Crafting fuel");
+                Debug.Log("Crafting scanner");
                 Inventory.items[diamond].itemQuantity -= 1;
                 Inventory.items[gold].itemQuantity -= 3;
 
