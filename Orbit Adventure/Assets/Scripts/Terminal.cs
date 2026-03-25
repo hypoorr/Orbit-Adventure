@@ -77,11 +77,15 @@ public class Terminal : MonoBehaviour
                     else
                     {
                         OutputToTerminal("PLANET NAME: " + TerrainGenerator.planetName);
+                        OutputToTerminal("");
+                        OutputToTerminal("SEED: " + TerrainGenerator.seed.ToString());
+                        OutputToTerminal("");
                         OutputToTerminal("INTELLIGENT LIFE FOUND: " + TerrainGenerator.hasEnemies.ToString());
+                        OutputToTerminal("");
                         OutputToTerminal("RESOURCES FOUND:");
-                        foreach (string i in TerrainGenerator.resourcesPresent) // log all resources present in world
+                        for (int i = 0; i < TerrainGenerator.resourcesPresent.Count; i++) // log all resources present in world
                         {
-                            OutputToTerminal(i);
+                            OutputToTerminal(TerrainGenerator.resourcesPresent[i]);
                         }
                     }
 

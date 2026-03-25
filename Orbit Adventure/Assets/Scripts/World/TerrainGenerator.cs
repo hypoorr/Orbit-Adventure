@@ -41,16 +41,16 @@ public class TerrainGenerator : MonoBehaviour
 
 
     //seed adds randomization to world generation
-    public float seed;
+    public static float seed;
 
 
     void Start()
     {
-        foreach (string i in resourcesPresent) // destroy previous recorded resources
+        for (int i = 0; i < TerrainGenerator.resourcesPresent.Count; i++) // destroy previous recorded resources
         {
-            resourcesPresent.Remove(i);
+            resourcesPresent.RemoveAt(i);
         }
-        
+
         hasEnemies = false;
         loadingScreen.SetActive(true);
         //define the seed and get the terrain to begin generation
