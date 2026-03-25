@@ -33,33 +33,76 @@ public class Terminal : MonoBehaviour
 
     private void FinishedTyping(string text) // check command typed
     {
-        terminalOutput.text = "";
-        terminalInput.text = "";
-        terminalInput.ActivateInputField();
-        OutputToTerminal(">>" + text);
-
-        // CHECK COMMAND
-        switch (text.ToLower())
+        if (!(terminalInput.text == ""))
         {
-            case "takeoff":
-                //takeoff
-                StartCoroutine(StartTakeoff());
-                break;
-            case "help":
-                OutputToTerminal("List of commands:");
-                OutputToTerminal("Takeoff: if you have enough fuel, ship takes off.");
-                OutputToTerminal("FuelCheck: Check your fuel level");
-                break;
-            case "fuelcheck":
-                OutputToTerminal("Current fuel amount: " + ShipFuel.shipFuel.ToString() + "L");
-                break;
-            default:
-                OutputToTerminal("Unknown command. Type 'help' for a list of commands");
-                break;
+            terminalOutput.text = "";
+            terminalInput.text = "";
+        
 
+        
+            OutputToTerminal(">>" + text);
+
+            // CHECK COMMAND
+            switch (text.ToLower())
+            {
+                case "takeoff":
+                    //takeoff
+                    StartCoroutine(StartTakeoff());
+                    break;
+
+
+                case "help":
+                    OutputToTerminal("List of commands:");
+                    OutputToTerminal("Takeoff: if you have enough fuel, ship takes off.");
+                    OutputToTerminal("FuelCheck: Check your fuel level");
+                    OutputToTerminal("Planetscan: gives information about the planet");
+                    break;
+
+
+                case "fuelcheck":
+                    OutputToTerminal("Current fuel amount: " + ShipFuel.shipFuel.ToString() + "L");
+                    break;
+
+
+                case "hi":
+                    OutputToTerminal("hey");
+                    break;
+
+
+                case "planetscan":
+                    if (SceneManager.GetActiveScene().name == "InsideShip")
+                    {
+                        OutputToTerminal("You must be landed on a planet to do this!");
+                    }
+                    else
+                    {
+                        OutputToTerminal("PLANET NAME: " + TerrainGenerator.planetName);
+                        OutputToTerminal("INTELLIGENT LIFE FOUND: " + TerrainGenerator.hasEnemies.ToString());
+                        OutputToTerminal("RESOURCES FOUND:");
+                        foreach (string i in TerrainGenerator.resourcesPresent) // log all resources present in world
+                        {
+                            OutputToTerminal(i);
+                        }
+                    }
+
+                    break;
+
+
+                default:
+                    OutputToTerminal("Unknown command. Type 'help' for a list of commands");
+                    break;
+
+            }
+        }
+        if(gameObject.transform.Find("TerminalCamera").gameObject.activeSelf)
+        {
+            terminalInput.ActivateInputField();
+        }
+        else
+        {
+            terminalInput.DeactivateInputField();
         }
     }
-
     private void OutputToTerminal(string text)
     {
         terminalOutput.text = terminalOutput.text + "\n" + text;

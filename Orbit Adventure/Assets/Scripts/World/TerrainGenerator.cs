@@ -25,6 +25,15 @@ public class TerrainGenerator : MonoBehaviour
 
     public float scale = 20f;
 
+    private string[] firstNamePlanet = {"flizzy", "larpy", "gurtified", "perry"};
+    private string[] lastNamePlanet = {"type B", "weasle", "flizzable", "octane"};
+    public static string planetName;
+
+
+    public static bool hasEnemies;
+
+    public static List<string> resourcesPresent = new List<string>();
+
     [SerializeField] private GameObject shipModel;
     [SerializeField] private GameObject playerModel;
 
@@ -37,6 +46,12 @@ public class TerrainGenerator : MonoBehaviour
 
     void Start()
     {
+        foreach (string i in resourcesPresent) // destroy previous recorded resources
+        {
+            resourcesPresent.Remove(i);
+        }
+        
+        hasEnemies = false;
         loadingScreen.SetActive(true);
         //define the seed and get the terrain to begin generation
         seed = Random.Range(0, 1000);
@@ -54,6 +69,7 @@ public class TerrainGenerator : MonoBehaviour
         StartCoroutine(PositionShip());
         StartCoroutine(SpawnRocks());
         StartCoroutine(SpawnGold());
+        GeneratePlanetName();
 
 
 
@@ -118,6 +134,12 @@ public class TerrainGenerator : MonoBehaviour
         return Mathf.PerlinNoise(xCoord, yCoord);
     }
 
+    void GeneratePlanetName()
+    {
+        planetName = firstNamePlanet[Random.Range(0,3)] + " " + lastNamePlanet[Random.Range(0,3)];
+        Debug.Log(planetName);
+    }
+
 
 
     IEnumerator PositionShip()
@@ -159,6 +181,7 @@ public class TerrainGenerator : MonoBehaviour
 
     IEnumerator SpawnRocks()
     {
+        resourcesPresent.Add("Stone");
         for (int i = 0; i < 350; i++)
         {
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
@@ -175,6 +198,7 @@ public class TerrainGenerator : MonoBehaviour
 
     IEnumerator SpawnDiamonds()
     {
+        resourcesPresent.Add("Diamond");
         for (int i = 0; i < 40; i++)
         {
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
@@ -190,6 +214,7 @@ public class TerrainGenerator : MonoBehaviour
     }
     IEnumerator SpawnGold()
     {
+        resourcesPresent.Add("Gold");
         for (int i = 0; i < 75; i++)
         {
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
@@ -206,6 +231,7 @@ public class TerrainGenerator : MonoBehaviour
 
     IEnumerator SpawnEnemy()
     {
+        hasEnemies = true;
         for (int i = 0; i < 30; i++)
         {
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
