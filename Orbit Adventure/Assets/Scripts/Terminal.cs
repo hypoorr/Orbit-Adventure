@@ -35,68 +35,72 @@ public class Terminal : MonoBehaviour
     {
         if (!(terminalInput.text == ""))
         {
-            terminalOutput.text = "";
             terminalInput.text = "";
-        
-
-        
-            OutputToTerminal(">>" + text);
-
-            // CHECK COMMAND
-            switch (text.ToLower())
+            if(gameObject.transform.Find("TerminalCamera").gameObject.activeSelf)
             {
-                case "takeoff":
-                    //takeoff
-                    StartCoroutine(StartTakeoff());
-                    break;
+                terminalOutput.text = "";
+                OutputToTerminal(">>" + text);
+
+                // CHECK COMMAND
+                switch (text.ToLower())
+                {
+                    case "takeoff":
+                        //takeoff
+                        StartCoroutine(StartTakeoff());
+                        break;
 
 
-                case "help":
-                    OutputToTerminal("List of commands:");
-                    OutputToTerminal("Takeoff: if you have enough fuel, ship takes off.");
-                    OutputToTerminal("FuelCheck: Check your fuel level");
-                    OutputToTerminal("Planetscan: gives information about the planet");
-                    break;
+                    case "help":
+                        OutputToTerminal("List of commands:");
+                        OutputToTerminal("Takeoff: if you have enough fuel, ship takes off.");
+                        OutputToTerminal("FuelCheck: Check your fuel level");
+                        OutputToTerminal("Planetscan: gives information about the planet");
+                        break;
 
 
-                case "fuelcheck":
-                    OutputToTerminal("Current fuel amount: " + ShipFuel.shipFuel.ToString() + "L");
-                    break;
+                    case "fuelcheck":
+                        OutputToTerminal("Current fuel amount: " + ShipFuel.shipFuel.ToString() + "L");
+                        OutputToTerminal("You can craft more fuel then refuel around the side of the ship");
+                        break;
 
 
-                case "hi":
-                    OutputToTerminal("hey");
-                    break;
+                    case "hi":
+                        OutputToTerminal("hey");
+                        break;
 
 
-                case "planetscan":
-                    if (SceneManager.GetActiveScene().name == "InsideShip")
-                    {
-                        OutputToTerminal("You must be landed on a planet to do this!");
-                    }
-                    else
-                    {
-                        OutputToTerminal("PLANET NAME: " + TerrainGenerator.planetName);
-                        OutputToTerminal("");
-                        OutputToTerminal("SEED: " + TerrainGenerator.seed.ToString());
-                        OutputToTerminal("");
-                        OutputToTerminal("INTELLIGENT LIFE FOUND: " + TerrainGenerator.hasEnemies.ToString());
-                        OutputToTerminal("");
-                        OutputToTerminal("RESOURCES FOUND:");
-                        for (int i = 0; i < TerrainGenerator.resourcesPresent.Count; i++) // log all resources present in world
+                    case "planetscan":
+                        if (SceneManager.GetActiveScene().name == "InsideShip")
                         {
-                            OutputToTerminal(TerrainGenerator.resourcesPresent[i]);
+                            OutputToTerminal("You must be landed on a planet to do this!");
                         }
-                    }
+                        else
+                        {
+                            OutputToTerminal("PLANET NAME: " + TerrainGenerator.planetName);
+                            OutputToTerminal("");
+                            OutputToTerminal("SEED: " + TerrainGenerator.seed.ToString());
+                            OutputToTerminal("");
+                            OutputToTerminal("INTELLIGENT LIFE FOUND: " + TerrainGenerator.hasEnemies.ToString());
+                            OutputToTerminal("");
+                            OutputToTerminal("RESOURCES FOUND:");
+                            for (int i = 0; i < TerrainGenerator.resourcesPresent.Count; i++) // log all resources present in world
+                            {
+                                OutputToTerminal(TerrainGenerator.resourcesPresent[i]);
+                            }
+                        }
 
-                    break;
+                        break;
 
 
-                default:
-                    OutputToTerminal("Unknown command. Type 'help' for a list of commands");
-                    break;
+                    default:
+                        OutputToTerminal("Unknown command. Type 'help' for a list of commands");
+                        break;
 
+                }
             }
+
+        
+
         }
         if(gameObject.transform.Find("TerminalCamera").gameObject.activeSelf)
         {
