@@ -136,7 +136,7 @@ public class TerrainGenerator : MonoBehaviour
 
     void GeneratePlanetName()
     {
-        planetName = firstNamePlanet[Random.Range(0,3)] + " " + lastNamePlanet[Random.Range(0,3)];
+        planetName = firstNamePlanet[Random.Range(0,4)] + " " + lastNamePlanet[Random.Range(0,4)];
         Debug.Log(planetName);
     }
 

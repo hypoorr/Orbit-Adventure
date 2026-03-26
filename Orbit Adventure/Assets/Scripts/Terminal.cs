@@ -70,25 +70,7 @@ public class Terminal : MonoBehaviour
 
 
                     case "planetscan":
-                        if (SceneManager.GetActiveScene().name == "InsideShip")
-                        {
-                            OutputToTerminal("You must be landed on a planet to do this!");
-                        }
-                        else
-                        {
-                            OutputToTerminal("PLANET NAME: " + TerrainGenerator.planetName);
-                            OutputToTerminal("");
-                            OutputToTerminal("SEED: " + TerrainGenerator.seed.ToString());
-                            OutputToTerminal("");
-                            OutputToTerminal("INTELLIGENT LIFE FOUND: " + TerrainGenerator.hasEnemies.ToString());
-                            OutputToTerminal("");
-                            OutputToTerminal("RESOURCES FOUND:");
-                            for (int i = 0; i < TerrainGenerator.resourcesPresent.Count; i++) // log all resources present in world
-                            {
-                                OutputToTerminal(TerrainGenerator.resourcesPresent[i]);
-                            }
-                        }
-
+                        StartCoroutine(PlanetScan());
                         break;
 
 
@@ -137,6 +119,34 @@ public class Terminal : MonoBehaviour
             }
 
         }
+    }
+
+    IEnumerator PlanetScan()
+    {
+        if (SceneManager.GetActiveScene().name == "InsideShip")
+        {
+            OutputToTerminal("You must be landed on a planet to do this!");
+        }
+        else
+        {
+            OutputToTerminal("Scanning...");
+            for(int i = 0; i < Random.Range(3,5); i++)
+            {
+                yield return new WaitForSeconds(0.5f);
+                OutputToTerminal("...");
+            }
+            OutputToTerminal("PLANET NAME: " + TerrainGenerator.planetName);
+            OutputToTerminal("");
+            OutputToTerminal("SEED: " + TerrainGenerator.seed.ToString());
+            OutputToTerminal("");
+            OutputToTerminal("INTELLIGENT LIFE FOUND: " + TerrainGenerator.hasEnemies.ToString());
+            OutputToTerminal("");
+            OutputToTerminal("RESOURCES FOUND:");
+            for (int i = 0; i < TerrainGenerator.resourcesPresent.Count; i++) // log all resources present in world
+            {
+                OutputToTerminal(TerrainGenerator.resourcesPresent[i]);
+            }
+        }   
     }
 
 
