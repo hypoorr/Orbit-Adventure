@@ -75,7 +75,7 @@ public class TerrainGenerator : MonoBehaviour
 
         // RANDOM EVENTS
 
-        if (Random.Range(1, 10) == 1) // 1/10 chance for enemies
+        if (Random.Range(1, 1) == 1) // 1/10 chance for enemies
         {
             StartCoroutine(SpawnEnemy());
         }
@@ -204,7 +204,7 @@ public class TerrainGenerator : MonoBehaviour
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
             float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
             float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ));
-            yVal += 1f;
+            yVal += 0f;
 
             Instantiate(diamondPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
             yield return new WaitForSeconds(0.01f);
