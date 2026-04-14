@@ -20,6 +20,8 @@ public class TerrainGenerator : MonoBehaviour
     public GameObject goldPrefab;
     public GameObject enemyPrefab;
 
+    public GameObject passiveCreaturePrefab;
+
     public Material floorMaterial;
 
     public NavMeshSurface navMeshSurface;
@@ -77,6 +79,7 @@ public class TerrainGenerator : MonoBehaviour
         StartCoroutine(PositionShip());
         StartCoroutine(SpawnRocks());
         StartCoroutine(SpawnGold());
+        StartCoroutine(SpawnPassiveCreatures());
         GeneratePlanetName();
 
 
@@ -241,6 +244,24 @@ public class TerrainGenerator : MonoBehaviour
 
             GameObject newEnemy = Instantiate(enemyPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
             newEnemy.SetActive(true);
+            yield return new WaitForSeconds(0.01f);
+        }
+
+
+    }
+
+        IEnumerator SpawnPassiveCreatures()
+    {
+        hasEnemies = true;
+        for (int i = 0; i < 30; i++)
+        {
+            float randX = Random.Range(xTerrainPos, xTerrainPos + width);
+            float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
+            float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ));
+            yVal += 0.4f;
+
+            GameObject newCreature = Instantiate(passiveCreaturePrefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
+            newCreature.SetActive(true);
             yield return new WaitForSeconds(0.01f);
         }
 
