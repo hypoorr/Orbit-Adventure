@@ -52,6 +52,8 @@ public class Inventory : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 inventoryUI.SetActive(false);
+                gameObject.GetComponent<PlayerLook>().xSensitivity = 60;
+                gameObject.GetComponent<PlayerLook>().ySensitivity = 60;
             }
             else // if inventory closed, then open it and show cursor
             {
@@ -59,6 +61,8 @@ public class Inventory : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 inventoryUI.SetActive(true);
+                gameObject.GetComponent<PlayerLook>().xSensitivity = 0;
+                gameObject.GetComponent<PlayerLook>().ySensitivity = 0;
             }
 
         }

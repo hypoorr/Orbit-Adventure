@@ -27,8 +27,8 @@ public class TerrainGenerator : MonoBehaviour
 
     public float scale = 20f;
 
-    private string[] firstNamePlanet = {"flizzy", "larpy", "gurtified", "perry"};
-    private string[] lastNamePlanet = {"type B", "weasle", "flizzable", "octane"};
+    private string[] firstNamePlanet = {"flizzy", "larpy", "gurtified", "perry", "deuce"};
+    private string[] lastNamePlanet = {"type B", "weasle", "flizzable", "octane",};
     public static string planetName;
 
 
@@ -60,7 +60,7 @@ public class TerrainGenerator : MonoBehaviour
         //define the seed and get the terrain to begin generation
         seed = Random.Range(0, 1000);
         Random.InitState(Mathf.RoundToInt(seed));
-        depth = seed / 35f;
+        depth = seed / 25f;
 
         Terrain terrain = GetComponent<Terrain>();
         floorMaterial = terrain.materialTemplate; // get the terrain material to be able to change colour
@@ -83,7 +83,7 @@ public class TerrainGenerator : MonoBehaviour
 
         // RANDOM EVENTS
 
-        if (Random.Range(1, 10) == 1) // 1/10 chance for enemies
+        if (Random.Range(1, 7) == 1) // 1/7 chance for enemies
         {
             StartCoroutine(SpawnEnemy());
         }
