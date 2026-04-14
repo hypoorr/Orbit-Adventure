@@ -20,6 +20,8 @@ public class TerrainGenerator : MonoBehaviour
     public GameObject goldPrefab;
     public GameObject enemyPrefab;
 
+    public Material floorMaterial;
+
     public NavMeshSurface navMeshSurface;
     public PlayerMotor player;
 
@@ -51,13 +53,19 @@ public class TerrainGenerator : MonoBehaviour
             resourcesPresent.RemoveAt(i);
         }
 
+
         hasEnemies = false;
         loadingScreen.SetActive(true);
+
         //define the seed and get the terrain to begin generation
         seed = Random.Range(0, 1000);
         Random.InitState(Mathf.RoundToInt(seed));
         depth = seed / 35f;
+
         Terrain terrain = GetComponent<Terrain>();
+        floorMaterial = terrain.materialTemplate; // get the terrain material to be able to change colour
+        floorMaterial.color = new Color32((byte)Random.Range(0,100), (byte)Random.Range(0,100), (byte)Random.Range(0,100), 1); // assign a random colour to the ground
+
         terrain.terrainData = GenerateTerrain(terrain.terrainData);
         Debug.Log(depth);
 
@@ -75,7 +83,7 @@ public class TerrainGenerator : MonoBehaviour
 
         // RANDOM EVENTS
 
-        if (Random.Range(1, 1) == 1) // 1/10 chance for enemies
+        if (Random.Range(1, 10) == 1) // 1/10 chance for enemies
         {
             StartCoroutine(SpawnEnemy());
         }
@@ -145,8 +153,8 @@ public class TerrainGenerator : MonoBehaviour
     IEnumerator PositionShip()
     {
         //Generate random x,y,z position on the terrain
-        float randX = width / 2f;//Random.Range(xTerrainPos, xTerrainPos + width); //xTerrainPos, xTerrainPos + width);
-        float randZ = height / 2f;//Random.Range(zTerrainPos, zTerrainPos + height);//zTerrainPos, zTerrainPos + height);
+        float randX = width / 2f; //Random.Range(xTerrainPos, xTerrainPos + width); //xTerrainPos, xTerrainPos + width);
+        float randZ = height / 2f; //Random.Range(zTerrainPos, zTerrainPos + height);//zTerrainPos, zTerrainPos + height);
         float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(0, 0, 0));
 
         //Apply Offset
@@ -168,14 +176,6 @@ public class TerrainGenerator : MonoBehaviour
         playerModel.transform.position = new Vector3(shipModel.transform.position.x, shipModel.transform.position.y + 3f, shipModel.transform.position.z);
         playerModel.GetComponent<CharacterController>().enabled = true;
         loadingScreen.SetActive(false);
-
-
-        //spawn gold block
-        randX += Random.Range(-100, 100);
-        randZ += Random.Range(-100, 100);
-        yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ));
-        yVal += 3f;
-        //Instantiate(prefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
 
     }
 
