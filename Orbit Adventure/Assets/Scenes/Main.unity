@@ -3570,7 +3570,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 24.2, y: -18.32}
+  m_AnchoredPosition: {x: 32.3, y: -18.32}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &462648046
@@ -3593,7 +3593,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Flizian
+  m_text: TBD
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7206,7 +7206,7 @@ MonoBehaviour:
   diamondIndex: {fileID: 1840388941}
   goldIndex: {fileID: 369357649}
   flizianIndex: {fileID: 592236244}
-  passiveCreature1Index: {fileID: 0}
+  passiveCreature1Index: {fileID: 672146184}
 --- !u!136 &1024666213
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -14808,7 +14808,7 @@ MonoBehaviour:
   shipInfo: {fileID: 1015069687}
   goldInfo: {fileID: 353553645}
   flizianInfo: {fileID: 1224295307}
-  passiveCreature1Info: {fileID: 0}
+  passiveCreature1Info: {fileID: 1145061486}
   inventory: {fileID: 1024666200}
 --- !u!1 &2131290933
 GameObject:
@@ -15338,7 +15338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &919132148626769472
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,6 +5,6 @@ public class PassiveCreature1Scannable : Scannable
 
     protected override void Interact()
     {
-        IndexManager.flizianScanned = true;
+        IndexManager.passiveCreature1Scanned = true;
     }
 }
