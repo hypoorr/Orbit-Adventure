@@ -55,6 +55,15 @@ public class Terminal : MonoBehaviour
                         OutputToTerminal("Takeoff: if you have enough fuel, ship takes off.");
                         OutputToTerminal("FuelCheck: Check your fuel level");
                         OutputToTerminal("Planetscan: gives information about the planet");
+                        OutputToTerminal("rng: output a random number");
+                        OutputToTerminal("");
+                        OutputToTerminal("");
+                        OutputToTerminal("");
+                        OutputToTerminal("");
+                        OutputToTerminal("");
+                        OutputToTerminal("");
+                        OutputToTerminal("EMPLOYEE USAGE ONLY");
+                        OutputToTerminal("Debugger: Assess the ship");
                         break;
 
 
@@ -73,6 +82,22 @@ public class Terminal : MonoBehaviour
                         StartCoroutine(PlanetScan());
                         break;
 
+                    case "rng":
+                        OutputToTerminal(Random.Range(1,11).ToString());
+                        break;
+
+                    case "debugger":
+                        OutputToTerminal("Currently rented to: [REDACTED]");
+                        OutputToTerminal("Stability: 1%");
+                        OutputToTerminal("ESTIMATED SURVIVAL CHANCE: 0%");
+                        OutputToTerminal("");
+                        OutputToTerminal("");
+                        OutputToTerminal("");
+                        OutputToTerminal("");
+                        OutputToTerminal("");
+                        OutputToTerminal("");
+                        OutputToTerminal("FlizzyOS by FlizCorp™");
+                        break;
 
                     default:
                         OutputToTerminal("Unknown command. Type 'help' for a list of commands");
@@ -139,7 +164,7 @@ public class Terminal : MonoBehaviour
             OutputToTerminal("");
             OutputToTerminal("SEED: " + TerrainGenerator.seed.ToString());
             OutputToTerminal("");
-            OutputToTerminal("INTELLIGENT LIFE FOUND: " + TerrainGenerator.hasEnemies.ToString());
+            OutputToTerminal("AGGRESSIVE LIFE FOUND: " + TerrainGenerator.hasEnemies.ToString());
             OutputToTerminal("");
             OutputToTerminal("RESOURCES FOUND:");
             for (int i = 0; i < TerrainGenerator.resourcesPresent.Count; i++) // log all resources present in world
