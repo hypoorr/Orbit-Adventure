@@ -252,7 +252,6 @@ public class TerrainGenerator : MonoBehaviour
 
         IEnumerator SpawnPassiveCreatures()
     {
-        hasEnemies = true;
         for (int i = 0; i < 30; i++)
         {
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);

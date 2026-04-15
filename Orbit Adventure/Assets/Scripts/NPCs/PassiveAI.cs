@@ -45,8 +45,8 @@ public class PassiveAI : MonoBehaviour
         while (true)
         {
         yield return new WaitForSeconds(Random.Range(15, 25));
-        float randomX = gameObject.transform.position.x +- 25f; 
-        float randomZ = gameObject.transform.position.z +- 25f;
+        float randomX = gameObject.transform.position.x + Random.Range(-25f, 25f); 
+        float randomZ = gameObject.transform.position.z + Random.Range(-25f, 25f);
         float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randomX, 0, randomZ)); // find the Y value on the terrain
         agent.SetDestination(new Vector3(randomX, yVal, randomZ)); // set agent destination
         }
