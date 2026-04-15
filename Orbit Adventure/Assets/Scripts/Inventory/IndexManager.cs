@@ -14,6 +14,9 @@ public class IndexManager : MonoBehaviour
     public static bool flizianScanned = false;
     public GameObject flizianIndex;
 
+    public static bool passiveCreature1Scanned = false;
+    public GameObject passiveCreature1Index;
+
     void Update()
     {
         if (stoneScanned)
@@ -49,6 +52,15 @@ public class IndexManager : MonoBehaviour
             undiscoveredText.gameObject.SetActive(false);
             Transform infoButton = flizianIndex.transform.GetChild(0);
             Transform name = flizianIndex.transform.GetChild(1);
+            infoButton.gameObject.SetActive(true);
+            name.gameObject.SetActive(true);
+        }
+        if (passiveCreature1Scanned)
+        {
+            Transform undiscoveredText = passiveCreature1Index.transform.GetChild(2);
+            undiscoveredText.gameObject.SetActive(false);
+            Transform infoButton = passiveCreature1Index.transform.GetChild(0);
+            Transform name = passiveCreature1Index.transform.GetChild(1);
             infoButton.gameObject.SetActive(true);
             name.gameObject.SetActive(true);
         }
