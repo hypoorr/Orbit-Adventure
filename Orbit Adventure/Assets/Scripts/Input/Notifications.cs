@@ -6,8 +6,8 @@ public class Notifications : MonoBehaviour
 
     static private void NewNotification(string title, string text)
     {
-        GameObject newElement = Instantiate(notificationTemplate, GameObject, true);
-        
+        GameObject newElement = Instantiate(notificationTemplate, gameObject.transform, true);
+
         // create notification in corner
         // replace titletext with title
         // replace notitext with text
