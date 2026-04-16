@@ -8368,7 +8368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemElement: {fileID: 1647691402}
-  inventoryUI: {fileID: 1401500976}
+  inventoryUI: {fileID: 1398279497}
   inventoryBG: {fileID: 1401500977}
 --- !u!114 &1182836589
 MonoBehaviour:

@@ -7,7 +7,7 @@ public class TerrainGenerator : MonoBehaviour
 {
 
     public float depth = 20;
-
+    public float scale = 20f;
     public int width = 800;
     public int height = 800;
 
@@ -19,15 +19,17 @@ public class TerrainGenerator : MonoBehaviour
     public GameObject diamondPrefab;
     public GameObject goldPrefab;
     public GameObject enemyPrefab;
-
     public GameObject passiveCreaturePrefab;
+    [SerializeField] private GameObject shipModel;
+    [SerializeField] private GameObject playerModel;
+
 
     public Material floorMaterial;
 
     public NavMeshSurface navMeshSurface;
     public PlayerMotor player;
 
-    public float scale = 20f;
+    
 
     private string[] firstNamePlanet = { "flizzy", "larpy", "gurtified", "perry", "deuce" };
     private string[] lastNamePlanet = { "type B", "weasle", "flizzable", "octane", };
@@ -38,8 +40,7 @@ public class TerrainGenerator : MonoBehaviour
 
     public static List<string> resourcesPresent = new List<string>();
 
-    [SerializeField] private GameObject shipModel;
-    [SerializeField] private GameObject playerModel;
+
 
     [SerializeField] private GameObject loadingScreen;
 
@@ -109,6 +110,7 @@ public class TerrainGenerator : MonoBehaviour
             player.gravity = -9.8f;
         }
 
+        //bake navmesh in coroutine to avoid freezing the game early on
         StartCoroutine(BakeNavMesh());
 
 
@@ -147,7 +149,7 @@ public class TerrainGenerator : MonoBehaviour
 
     void GeneratePlanetName()
     {
-        planetName = firstNamePlanet[Random.Range(0, 4)] + " " + lastNamePlanet[Random.Range(0, 4)];
+        planetName = firstNamePlanet[Random.Range(0, 5)] + " " + lastNamePlanet[Random.Range(0, 4)];
         Debug.Log(planetName);
     }
 
@@ -180,7 +182,7 @@ public class TerrainGenerator : MonoBehaviour
         Destroy(rb);
 
         playerModel.GetComponent<CharacterController>().enabled = false;
-        playerModel.transform.position = new Vector3(shipModel.transform.position.x, shipModel.transform.position.y + 3f, shipModel.transform.position.z);
+        playerModel.transform.position = new Vector3(shipModel.transform.position.x, shipModel.transform.position.y + 3f, shipModel.transform.position.z); //teleport the player to the ship
         playerModel.GetComponent<CharacterController>().enabled = true;
         loadingScreen.SetActive(false);
 
@@ -191,12 +193,13 @@ public class TerrainGenerator : MonoBehaviour
         resourcesPresent.Add("Stone");
         for (int i = 0; i < 350; i++)
         {
+            //pick a random X and Z position for the resource
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
             float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
-            float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ));
-            yVal += 0.5f;
+            float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ)); //find the Y pos on the terrain of the X and Z position
+            yVal += 0.5f; //add a small offset to avoid being in the ground
 
-            Instantiate(rockPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
+            Instantiate(rockPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity); //create the prefab of the material at the coordinates
             yield return new WaitForSeconds(0.01f);
         }
 
@@ -208,12 +211,13 @@ public class TerrainGenerator : MonoBehaviour
         resourcesPresent.Add("Diamond");
         for (int i = 0; i < 40; i++)
         {
+            //pick a random X and Z position for the resource
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
             float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
-            float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ));
-            yVal += 0f;
+            float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ)); //find the Y pos on the terrain of the X and Z position
+            yVal += 0f; //add a small offset to avoid being in the ground
 
-            Instantiate(diamondPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
+            Instantiate(diamondPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity); //create the prefab of the material at the coordinates
             yield return new WaitForSeconds(0.01f);
         }
 
@@ -224,12 +228,13 @@ public class TerrainGenerator : MonoBehaviour
         resourcesPresent.Add("Gold");
         for (int i = 0; i < 75; i++)
         {
+            //pick a random X and Z position for the resource
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
             float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
-            float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ));
-            yVal += 0.4f;
+            float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ)); //find the Y pos on the terrain of the X and Z position
+            yVal += 0.4f; //add a small offset to avoid being in the ground
 
-            Instantiate(goldPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
+            Instantiate(goldPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity); //create the prefab of the material at the coordinates
             yield return new WaitForSeconds(0.01f);
         }
 
@@ -241,12 +246,13 @@ public class TerrainGenerator : MonoBehaviour
         hasEnemies = true;
         for (int i = 0; i < 30; i++)
         {
+            //pick a random X and Z position for the NPC
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
             float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
-            float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ));
-            yVal += 0.4f;
+            float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ)); //find the Y pos on the terrain of the X and Z position
+            yVal += 0.4f; //add a small offset to avoid being in the ground
 
-            GameObject newEnemy = Instantiate(enemyPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
+            GameObject newEnemy = Instantiate(enemyPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity); //create the prefab of the NPC at the coordinates
             newEnemy.SetActive(true);
             yield return new WaitForSeconds(0.01f);
         }
@@ -258,12 +264,13 @@ public class TerrainGenerator : MonoBehaviour
     {
         for (int i = 0; i < 30; i++)
         {
+            //pick a random X and Z position for the NPC
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
             float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
-            float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ));
-            yVal += 0.4f;
+            float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ)); //find the Y pos on the terrain of the X and Z position
+            yVal += 0.4f; //add a small offset to avoid being in the ground
 
-            GameObject newCreature = Instantiate(passiveCreaturePrefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
+            GameObject newCreature = Instantiate(passiveCreaturePrefab, new Vector3(randX, yVal, randZ), Quaternion.identity); //create the prefab of the NPC at the coordinates
             newCreature.SetActive(true);
             yield return new WaitForSeconds(0.01f);
         }

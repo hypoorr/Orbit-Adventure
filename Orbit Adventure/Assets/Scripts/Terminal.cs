@@ -12,12 +12,22 @@ public class Terminal : MonoBehaviour
     public GameObject loadingScreen;
     public UnityEvent exitTerminal;
 
+    static private string inputtedName = "";
+
     void Start()
     {
         terminalInput.onEndEdit.AddListener(FinishedTyping);
         terminalOutput.text = "";
-        OutputToTerminal("FLIZZYOS");
-        OutputToTerminal("Type 'help' for a list of commands");
+        if (inputtedName == "") //check if its their first time using the terminal
+        {
+            OutputToTerminal("FLIZZYOS");
+            OutputToTerminal("New user detected! Please state your name:");
+        }
+        else
+        {
+            OutputToTerminal("Welcome, " + inputtedName);
+            OutputToTerminal("Type 'help' for a list of commands");
+        }
     }
 
     void Update()
@@ -41,70 +51,84 @@ public class Terminal : MonoBehaviour
                 terminalOutput.text = "";
                 OutputToTerminal(">>" + text);
 
-                // CHECK COMMAND
-                switch (text.ToLower())
+                if (inputtedName == "") //if they havent set a name, treat command as name input
                 {
-                    case "takeoff":
-                        //takeoff
-                        StartCoroutine(StartTakeoff());
-                        break;
-
-
-                    case "help":
-                        OutputToTerminal("Press 'i' at any time to open the inventory");
-                        OutputToTerminal("List of commands:");
-                        OutputToTerminal("Takeoff: if you have enough fuel, ship takes off.");
-                        OutputToTerminal("FuelCheck: Check your fuel level");
-                        OutputToTerminal("Planetscan: gives information about the planet");
-                        OutputToTerminal("rng: output a random number");
-                        OutputToTerminal("");
-                        OutputToTerminal("");
-                        OutputToTerminal("");
-                        OutputToTerminal("");
-                        OutputToTerminal("");
-                        OutputToTerminal("");
-                        OutputToTerminal("EMPLOYEE USAGE ONLY");
-                        OutputToTerminal("Debugger: Assess the ship");
-                        break;
-
-
-                    case "fuelcheck":
-                        OutputToTerminal("Current fuel amount: " + ShipFuel.shipFuel.ToString() + "L");
-                        OutputToTerminal("You can craft more fuel then refuel around the side of the ship");
-                        break;
-
-
-                    case "hi":
-                        OutputToTerminal("hey");
-                        break;
-
-
-                    case "planetscan":
-                        StartCoroutine(PlanetScan());
-                        break;
-
-                    case "rng":
-                        OutputToTerminal(Random.Range(1, 11).ToString());
-                        break;
-
-                    case "debugger":
-                        OutputToTerminal("Currently rented to: [REDACTED]");
-                        OutputToTerminal("Stability: 1%");
-                        OutputToTerminal("ESTIMATED SURVIVAL CHANCE: 0%");
-                        OutputToTerminal("");
-                        OutputToTerminal("");
-                        OutputToTerminal("");
-                        OutputToTerminal("");
-                        OutputToTerminal("");
-                        OutputToTerminal("");
-                        OutputToTerminal("FlizzyOS by FlizCorp™");
-                        break;
-
-                    default:
-                        OutputToTerminal("Unknown command. Type 'help' for a list of commands");
-                        break;
-
+                    inputtedName = text;
+                    OutputToTerminal("Welcome, " + inputtedName);
+                    OutputToTerminal("");
+                    OutputToTerminal("This terminal has been repurposed in an attempt to keep you alive while travelling.");
+                    OutputToTerminal("FlizCorp™ are not responsible for any fatal problems, namely death, that may occur during\nusage.");
+                    OutputToTerminal("");
+                    OutputToTerminal("Type 'help' for a list of commands");
                 }
+                else //if name exists, use normal commands
+                {
+                    // CHECK COMMAND
+                    switch (text.ToLower())
+                    {
+                        case "takeoff":
+                            //takeoff
+                            StartCoroutine(StartTakeoff());
+                            break;
+
+
+                        case "help":
+                            OutputToTerminal("Press 'i' at any time to open the inventory");
+                            OutputToTerminal("List of commands:");
+                            OutputToTerminal("Takeoff: if you have enough fuel, ship takes off.");
+                            OutputToTerminal("FuelCheck: Check your fuel level");
+                            OutputToTerminal("Planetscan: gives information about the planet");
+                            OutputToTerminal("rng: output a random number");
+                            OutputToTerminal("");
+                            OutputToTerminal("");
+                            OutputToTerminal("");
+                            OutputToTerminal("");
+                            OutputToTerminal("");
+                            OutputToTerminal("");
+                            OutputToTerminal("EMPLOYEE USAGE ONLY");
+                            OutputToTerminal("Debugger: Assess the ship");
+                            break;
+
+
+                        case "fuelcheck":
+                            OutputToTerminal("Current fuel amount: " + ShipFuel.shipFuel.ToString() + "L");
+                            OutputToTerminal("You can craft more fuel then refuel around the side of the ship");
+                            break;
+
+
+                        case "hi":
+                            OutputToTerminal("hey");
+                            break;
+
+
+                        case "planetscan":
+                            StartCoroutine(PlanetScan());
+                            break;
+
+                        case "rng":
+                            OutputToTerminal(Random.Range(1, 11).ToString());
+                            break;
+
+                        case "debugger":
+                            OutputToTerminal("Currently rented to: [REDACTED]");
+                            OutputToTerminal("Stability: 1%");
+                            OutputToTerminal("ESTIMATED SURVIVAL CHANCE: 0%");
+                            OutputToTerminal("");
+                            OutputToTerminal("");
+                            OutputToTerminal("");
+                            OutputToTerminal("");
+                            OutputToTerminal("");
+                            OutputToTerminal("");
+                            OutputToTerminal("FlizzyOS by FlizCorp™");
+                            break;
+
+                        default:
+                            OutputToTerminal("Unknown command. Type 'help' for a list of commands");
+                            break;
+
+                    }
+                }
+
             }
 
 
