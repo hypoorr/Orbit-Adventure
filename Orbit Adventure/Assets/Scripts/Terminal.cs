@@ -36,7 +36,7 @@ public class Terminal : MonoBehaviour
         if (!(terminalInput.text == ""))
         {
             terminalInput.text = "";
-            if(gameObject.transform.Find("TerminalCamera").gameObject.activeSelf)
+            if (gameObject.transform.Find("TerminalCamera").gameObject.activeSelf)
             {
                 terminalOutput.text = "";
                 OutputToTerminal(">>" + text);
@@ -51,6 +51,7 @@ public class Terminal : MonoBehaviour
 
 
                     case "help":
+                        OutputToTerminal("Press 'i' at any time to open the inventory");
                         OutputToTerminal("List of commands:");
                         OutputToTerminal("Takeoff: if you have enough fuel, ship takes off.");
                         OutputToTerminal("FuelCheck: Check your fuel level");
@@ -83,7 +84,7 @@ public class Terminal : MonoBehaviour
                         break;
 
                     case "rng":
-                        OutputToTerminal(Random.Range(1,11).ToString());
+                        OutputToTerminal(Random.Range(1, 11).ToString());
                         break;
 
                     case "debugger":
@@ -106,10 +107,10 @@ public class Terminal : MonoBehaviour
                 }
             }
 
-        
+
 
         }
-        if(gameObject.transform.Find("TerminalCamera").gameObject.activeSelf)
+        if (gameObject.transform.Find("TerminalCamera").gameObject.activeSelf)
         {
             terminalInput.ActivateInputField();
         }
@@ -155,7 +156,7 @@ public class Terminal : MonoBehaviour
         else
         {
             OutputToTerminal("Scanning...");
-            for(int i = 0; i < Random.Range(3,5); i++)
+            for (int i = 0; i < Random.Range(3, 5); i++)
             {
                 yield return new WaitForSeconds(0.5f);
                 OutputToTerminal("...");
@@ -171,7 +172,7 @@ public class Terminal : MonoBehaviour
             {
                 OutputToTerminal(TerrainGenerator.resourcesPresent[i]);
             }
-        }   
+        }
     }
 
 

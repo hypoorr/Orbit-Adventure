@@ -29,8 +29,8 @@ public class TerrainGenerator : MonoBehaviour
 
     public float scale = 20f;
 
-    private string[] firstNamePlanet = {"flizzy", "larpy", "gurtified", "perry", "deuce"};
-    private string[] lastNamePlanet = {"type B", "weasle", "flizzable", "octane",};
+    private string[] firstNamePlanet = { "flizzy", "larpy", "gurtified", "perry", "deuce" };
+    private string[] lastNamePlanet = { "type B", "weasle", "flizzable", "octane", };
     public static string planetName;
 
 
@@ -66,7 +66,7 @@ public class TerrainGenerator : MonoBehaviour
 
         Terrain terrain = GetComponent<Terrain>();
         floorMaterial = terrain.materialTemplate; // get the terrain material to be able to change colour
-        floorMaterial.color = new Color32((byte)Random.Range(0,100), (byte)Random.Range(0,100), (byte)Random.Range(0,100), 1); // assign a random colour to the ground
+        floorMaterial.color = new Color32((byte)Random.Range(0, 100), (byte)Random.Range(0, 100), (byte)Random.Range(0, 100), 1); // assign a random colour to the ground
 
         terrain.terrainData = GenerateTerrain(terrain.terrainData);
         Debug.Log(depth);
@@ -90,7 +90,7 @@ public class TerrainGenerator : MonoBehaviour
         {
             StartCoroutine(SpawnEnemy());
         }
-        
+
 
 
         if (Random.Range(1, 5) == 1) // 1/5 chance to spawn diamonds
@@ -109,7 +109,7 @@ public class TerrainGenerator : MonoBehaviour
             player.gravity = -9.8f;
         }
 
-        navMeshSurface.BuildNavMesh();
+        StartCoroutine(BakeNavMesh());
 
 
 
@@ -147,11 +147,15 @@ public class TerrainGenerator : MonoBehaviour
 
     void GeneratePlanetName()
     {
-        planetName = firstNamePlanet[Random.Range(0,4)] + " " + lastNamePlanet[Random.Range(0,4)];
+        planetName = firstNamePlanet[Random.Range(0, 4)] + " " + lastNamePlanet[Random.Range(0, 4)];
         Debug.Log(planetName);
     }
 
-
+    IEnumerator BakeNavMesh()
+    {
+        yield return null;
+        navMeshSurface.BuildNavMesh();
+    }
 
     IEnumerator PositionShip()
     {
@@ -250,7 +254,7 @@ public class TerrainGenerator : MonoBehaviour
 
     }
 
-        IEnumerator SpawnPassiveCreatures()
+    IEnumerator SpawnPassiveCreatures()
     {
         for (int i = 0; i < 30; i++)
         {
