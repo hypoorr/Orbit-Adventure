@@ -37,13 +37,16 @@ public class BreakableExample : Breakable
             
     }
 
+    private List<GameObject> activeParticles = new List<GameObject>();
     IEnumerator SpawnParticle()
     {
+
         //spawn corresponding particle for breakable
         switch (resourceToGrant)
         {
             case "Stone":
-                GameObject stoneParticle = Instantiate(GameObject.FindWithTag("StoneParticle"), gameObject.transform.position, Quaternion.identity);
+                GameObject stoneParticle = Instantiate(GameObject.FindWithTag("StoneParticle"), gameObject.transform.position, Quaternion.identity, gameObject.transform);
+                activeParticles.Add(stoneParticle);
                 yield return new WaitForSeconds(0.5f);
                 stoneParticle.SetActive(false);
                 Destroy(stoneParticle);
@@ -53,7 +56,8 @@ public class BreakableExample : Breakable
                 }
                 break;
             case "Gold":
-                GameObject goldParticle = Instantiate(GameObject.FindWithTag("GoldParticle"), gameObject.transform.position, Quaternion.identity);
+                GameObject goldParticle = Instantiate(GameObject.FindWithTag("GoldParticle"), gameObject.transform.position, Quaternion.identity, gameObject.transform); // parents to ore to delete properly
+                activeParticles.Add(goldParticle);
                 yield return new WaitForSeconds(0.5f);
                 goldParticle.SetActive(false);
                 Destroy(goldParticle);
@@ -63,7 +67,8 @@ public class BreakableExample : Breakable
                 }
                 break;
             case "Diamond":
-                GameObject diamondParticle = Instantiate(GameObject.FindWithTag("DiamondParticle"), gameObject.transform.position, Quaternion.identity);
+                GameObject diamondParticle = Instantiate(GameObject.FindWithTag("DiamondParticle"), gameObject.transform.position, Quaternion.identity, gameObject.transform);
+                activeParticles.Add(diamondParticle);
                 yield return new WaitForSeconds(0.5f);
                 diamondParticle.SetActive(false);
                 Destroy(diamondParticle);
@@ -72,7 +77,15 @@ public class BreakableExample : Breakable
                     Destroy(diamondParticle);
                 }
                 break;
+
+            for (int i = 0; i < activeParticles.Count; i++)
+            {
+                Destroy(activeParticles[i]);
+                activeParticles.RemoveAt(i);
+            }
         }
+
+
     }
 
     protected override void Interact()

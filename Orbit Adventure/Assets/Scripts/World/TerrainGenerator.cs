@@ -23,6 +23,8 @@ public class TerrainGenerator : MonoBehaviour
     [SerializeField] private GameObject shipModel;
     [SerializeField] private GameObject playerModel;
 
+    [SerializeField] private GameObject[] environmentObjectArray;
+
 
     public Material floorMaterial;
 
@@ -58,6 +60,7 @@ public class TerrainGenerator : MonoBehaviour
 
 
         hasEnemies = false;
+        passiveEvent = false;
         loadingScreen.SetActive(true);
 
         //define the seed and get the terrain to begin generation
@@ -80,7 +83,8 @@ public class TerrainGenerator : MonoBehaviour
         StartCoroutine(PositionShip());
         StartCoroutine(SpawnRocks());
         StartCoroutine(SpawnGold());
-        StartCoroutine(SpawnPassiveCreatures());
+        
+        StartCoroutine(CreateEnvironment());
         GeneratePlanetName();
 
 
@@ -91,8 +95,6 @@ public class TerrainGenerator : MonoBehaviour
         {
             StartCoroutine(SpawnEnemy());
         }
-
-
 
         if (Random.Range(1, 5) == 1) // 1/5 chance to spawn diamonds
         {
@@ -110,6 +112,14 @@ public class TerrainGenerator : MonoBehaviour
             player.gravity = -9.8f;
         }
 
+        // 1/20 chance of a wizzledizzle invasion
+        if (Random.Range(1, 20) == 1)
+        {
+            passiveEvent = true;
+        }
+
+
+        StartCoroutine(SpawnPassiveCreatures());
         //bake navmesh in coroutine to avoid freezing the game early on
         StartCoroutine(BakeNavMesh());
 
@@ -262,7 +272,7 @@ public class TerrainGenerator : MonoBehaviour
 
     IEnumerator SpawnPassiveCreatures()
     {
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < 3000; i++)
         {
             //pick a random X and Z position for the NPC
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
@@ -272,6 +282,24 @@ public class TerrainGenerator : MonoBehaviour
 
             GameObject newCreature = Instantiate(passiveCreaturePrefab, new Vector3(randX, yVal, randZ), Quaternion.identity); //create the prefab of the NPC at the coordinates
             newCreature.SetActive(true);
+            yield return new WaitForSeconds(0.01f);
+        }
+
+
+    }
+
+    IEnumerator CreateEnvironment()
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            //pick a random X and Z position for the NPC
+            float randX = Random.Range(xTerrainPos, xTerrainPos + width);
+            float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
+            float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ)); //find the Y pos on the terrain of the X and Z position
+            yVal += 0.4f; //add a small offset to avoid being in the ground
+
+            GameObject newObject = Instantiate(environmentObjectArray[Random.Range(0, environmentObjectArray.Length)], new Vector3(randX, yVal, randZ), Quaternion.identity); //create the prefab of the Object at the coordinates
+            newObject.SetActive(true);
             yield return new WaitForSeconds(0.01f);
         }
 

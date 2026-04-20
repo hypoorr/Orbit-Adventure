@@ -26859,6 +26859,9 @@ MonoBehaviour:
   passiveCreaturePrefab: {fileID: 919132148626769471}
   shipModel: {fileID: 1542712503}
   playerModel: {fileID: 1024666199}
+  environmentObjectArray:
+  - {fileID: 1811907946930330314, guid: f85e34484ea638e47aae4ff014727886, type: 3}
+  - {fileID: 6056329299441292260, guid: 6f33582da258c3c4583a54493deca5e4, type: 3}
   floorMaterial: {fileID: 0}
   navMeshSurface: {fileID: 530591037}
   player: {fileID: 1024666206}
