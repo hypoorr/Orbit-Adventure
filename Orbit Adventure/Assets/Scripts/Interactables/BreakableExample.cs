@@ -47,18 +47,30 @@ public class BreakableExample : Breakable
                 yield return new WaitForSeconds(0.5f);
                 stoneParticle.SetActive(false);
                 Destroy(stoneParticle);
+                if (stoneParticle)
+                {
+                    Destroy(stoneParticle);
+                }
                 break;
             case "Gold":
                 GameObject goldParticle = Instantiate(GameObject.FindWithTag("GoldParticle"), gameObject.transform.position, Quaternion.identity);
                 yield return new WaitForSeconds(0.5f);
                 goldParticle.SetActive(false);
                 Destroy(goldParticle);
+                if (goldParticle)
+                {
+                    Destroy(goldParticle);
+                }
                 break;
             case "Diamond":
                 GameObject diamondParticle = Instantiate(GameObject.FindWithTag("DiamondParticle"), gameObject.transform.position, Quaternion.identity);
                 yield return new WaitForSeconds(0.5f);
                 diamondParticle.SetActive(false);
                 Destroy(diamondParticle);
+                if (diamondParticle)
+                {
+                    Destroy(diamondParticle);
+                }
                 break;
         }
     }
@@ -73,7 +85,6 @@ public class BreakableExample : Breakable
         else
         {
             inventory.AddItem(resourceToGrant, 1, false);
-            SpawnParticle();
             Debug.Log("Interacted with " + gameObject.name);
             Destroy(gameObject);
         }
