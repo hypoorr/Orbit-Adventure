@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Craftables : MonoBehaviour
 {
-    [SerializeField] private Inventory inventory;
+    [SerializeField] private Inventory Inventory;
 
 
 
@@ -22,25 +22,25 @@ public class Craftables : MonoBehaviour
             {
                 gold = i;
             }
-            
+
         }
 
-            if (Inventory.items[stone].itemQuantity >= 2 && Inventory.items[stone].itemName == "Stone" && Inventory.items[gold].itemQuantity >= 1 && Inventory.items[gold].itemName == "Gold") // if requirements are met, remove resource and grant item
-            {
-                Debug.Log("Crafting fuel");
-                Inventory.items[stone].itemQuantity -= 2;
-                Inventory.items[gold].itemQuantity -= 1;
+        if (Inventory.items[stone].itemQuantity >= 2 && Inventory.items[stone].itemName == "Stone" && Inventory.items[gold].itemQuantity >= 1 && Inventory.items[gold].itemName == "Gold") // if requirements are met, remove resource and grant item
+        {
+            Debug.Log("Crafting fuel");
+            Inventory.items[stone].itemQuantity -= 2;
+            Inventory.items[gold].itemQuantity -= 1;
 
-                Inventory.AddItem("Fuel (L)", 4, false);
+            Inventory.AddItem("Fuel (L)", 4, false);
 
-            }
-            else
-            {
-                Debug.Log("too broke");
-            }
+        }
+        else
+        {
+            Debug.Log("too broke");
+        }
     }
 
-   public void CraftScanner()
+    public void CraftScanner()
     {
         for (int i = 0; i < Inventory.items.Count; i++)
         {
@@ -54,19 +54,19 @@ public class Craftables : MonoBehaviour
             }
 
         }
-            if (Inventory.items[diamond].itemQuantity >= 1 && Inventory.items[diamond].itemName == "Diamond" && Inventory.items[gold].itemQuantity >= 3 && Inventory.items[gold].itemName == "Gold") // if requirements are met, remove resource and grant item
-            {
-                Debug.Log("Crafting scanner");
-                Inventory.items[diamond].itemQuantity -= 1;
-                Inventory.items[gold].itemQuantity -= 3;
+        if (Inventory.items[diamond].itemQuantity >= 1 && Inventory.items[diamond].itemName == "Diamond" && Inventory.items[gold].itemQuantity >= 3 && Inventory.items[gold].itemName == "Gold") // if requirements are met, remove resource and grant item
+        {
+            Debug.Log("Crafting scanner");
+            Inventory.items[diamond].itemQuantity -= 1;
+            Inventory.items[gold].itemQuantity -= 3;
 
-                Inventory.AddItem("Scanner", 1, true); // true means the item is a tool
+            Inventory.AddItem("Scanner", 1, true); // true means the item is a tool
 
-            }
-            else
-            {
-                Debug.Log("too broke");
-            }
+        }
+        else
+        {
+            Debug.Log("too broke");
+        }
     }
 
 }

@@ -1,13 +1,23 @@
+using System;
 using UnityEngine;
 
 public class BreakableExample : Breakable
 {
 
     [SerializeField] private string resourceToGrant;
+    private Inventory inventory;
+
+    void Start()
+    {
+
+        inventory = FindFirstObjectByType<Inventory>();
+
+
+    }
 
     protected override void Interact()
     {
-        Inventory.AddItem(resourceToGrant, 1, false);
+        inventory.AddItem(resourceToGrant, 1, false);
         Debug.Log("Interacted with " + gameObject.name);
         Destroy(gameObject);
     }

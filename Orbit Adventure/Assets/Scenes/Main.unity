@@ -4284,8 +4284,8 @@ MonoBehaviour:
   m_IgnoreNavMeshObstacle: 1
   m_OverrideTileSize: 0
   m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.25
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
@@ -4594,8 +4594,8 @@ RectTransform:
   m_GameObject: {fileID: 594699857}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6.31, y: 2.83, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2.97, y: 1.3320285, z: 0.4706815}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2091035755}
   - {fileID: 1157030748}
@@ -4619,7 +4619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5996351, g: 0.6147245, b: 0.7264151, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7241,6 +7241,7 @@ MonoBehaviour:
   itemElement: {fileID: 1086379140}
   inventoryUI: {fileID: 2126768013}
   inventoryBG: {fileID: 343613066}
+  notification: {fileID: 33041930}
 --- !u!114 &1024666201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8226,7 +8227,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -27.23, y: 9.53}
+  m_AnchoredPosition: {x: -0.5, y: 9.34}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1157030749
@@ -8249,11 +8250,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'notificationinfogoesherewow
+  m_text: 'really cool new thing has
 
-    thisisreallycooltheressomuch
-
-    thatcanbeputherewowowow'
+    happened or something'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8287,7 +8286,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -13410,7 +13409,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1919412005
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13428,7 +13427,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -810.08, y: -24.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1940656398
@@ -14693,7 +14692,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.4000244, y: 39.54}
+  m_AnchoredPosition: {x: -0.34, y: 39.54}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2091035756
@@ -14749,8 +14748,8 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -15250,7 +15249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54aa5032941e4f94eadf81b5ca03dd71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 1024666200}
+  Inventory: {fileID: 0}
 --- !u!114 &2126768016
 MonoBehaviour:
   m_ObjectHideFlags: 0
