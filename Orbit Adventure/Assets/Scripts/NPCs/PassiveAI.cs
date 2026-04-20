@@ -22,9 +22,16 @@ public class PassiveAI : MonoBehaviour
         currentAnimation = animator.GetCurrentAnimatorClipInfo(0);
         if (agent.hasPath)
         {
-            if (currentAnimation[0].clip.name != "Walking")
+            try
             {
-                UpdateAnimation("Walking");
+                if (currentAnimation[0].clip.name != "Walking")
+                {
+                    UpdateAnimation("Walking");
+                }
+            }
+            catch (IndexOutOfRangeException e)
+            {
+
             }
 
         }
