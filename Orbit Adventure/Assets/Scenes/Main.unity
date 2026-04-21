@@ -8642,7 +8642,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Flizzledizzle
+  m_text: 'Wizzledizzle
 
 '
   m_isRightToLeft: 0
@@ -26032,7 +26032,7 @@ PrefabInstance:
     - target: {fileID: 6272350532052637613, guid: 5be3e1399f5509640b96df2934e23ef6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 0790cf8d411f6ee4188dabe4a56fd399, type: 2}
+      objectReference: {fileID: 2100000, guid: 68ba74e857354ac4686d6480d66ac1ef, type: 2}
     - target: {fileID: 6317578925029434746, guid: 5be3e1399f5509640b96df2934e23ef6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -31611,6 +31611,7 @@ GameObject:
   - component: {fileID: 1759171408004545468}
   - component: {fileID: 1759171408004545467}
   - component: {fileID: 1759171408004545466}
+  - component: {fileID: 1759171408004545471}
   m_Layer: 0
   m_Name: Flizzian
   m_TagString: Untagged
@@ -31744,6 +31745,27 @@ MonoBehaviour:
   attackDelay: 0.4
   attackSpeed: 1
   attackDamage: 7
+--- !u!65 &1759171408004545471
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759171408004545465}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 8.826064, y: 15.205224, z: 6.4075093}
+  m_Center: {x: 0.14177047, y: 7.1026115, z: 0.3338017}
 --- !u!137 &1823817582036245890
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
