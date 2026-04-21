@@ -23,13 +23,16 @@ public class TerrainGenerator : MonoBehaviour
     [SerializeField] private GameObject shipModel;
     [SerializeField] private GameObject playerModel;
 
+
     [SerializeField] private GameObject[] environmentObjectArray;
 
 
     public Material floorMaterial;
+    public Material worldToonColour;
 
     public NavMeshSurface navMeshSurface;
     public PlayerMotor player;
+
 
     
 
@@ -39,6 +42,7 @@ public class TerrainGenerator : MonoBehaviour
 
 
     public static bool hasEnemies;
+    public static bool passiveEvent;
 
     public static List<string> resourcesPresent = new List<string>();
 
@@ -71,7 +75,8 @@ public class TerrainGenerator : MonoBehaviour
         Terrain terrain = GetComponent<Terrain>();
         floorMaterial = terrain.materialTemplate; // get the terrain material to be able to change colour
         floorMaterial.color = new Color32((byte)Random.Range(0, 100), (byte)Random.Range(0, 100), (byte)Random.Range(0, 100), 1); // assign a random colour to the ground
-
+        worldToonColour.color = floorMaterial.color;
+        worldToonColour.SetColor("_Color", floorMaterial.color);
         terrain.terrainData = GenerateTerrain(terrain.terrainData);
         Debug.Log(depth);
 
@@ -272,25 +277,44 @@ public class TerrainGenerator : MonoBehaviour
 
     IEnumerator SpawnPassiveCreatures()
     {
-        for (int i = 0; i < 3000; i++)
+        if (passiveEvent == true)
         {
-            //pick a random X and Z position for the NPC
-            float randX = Random.Range(xTerrainPos, xTerrainPos + width);
-            float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
-            float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ)); //find the Y pos on the terrain of the X and Z position
-            yVal += 0.4f; //add a small offset to avoid being in the ground
+            for (int i = 0; i < 250; i++)
+            {
+                //pick a random X and Z position for the NPC
+                float randX = Random.Range(xTerrainPos, xTerrainPos + width);
+                float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
+                float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ)); //find the Y pos on the terrain of the X and Z position
+                yVal += 0.4f; //add a small offset to avoid being in the ground
 
-            GameObject newCreature = Instantiate(passiveCreaturePrefab, new Vector3(randX, yVal, randZ), Quaternion.identity); //create the prefab of the NPC at the coordinates
-            newCreature.SetActive(true);
-            yield return new WaitForSeconds(0.01f);
+                GameObject newCreature = Instantiate(passiveCreaturePrefab, new Vector3(randX, yVal, randZ), Quaternion.identity); //create the prefab of the NPC at the coordinates
+                newCreature.SetActive(true);
+                yield return new WaitForSeconds(0.01f);
+            }
         }
+        else
+        {
+            for (int i = 0; i < 30; i++)
+            {
+                //pick a random X and Z position for the NPC
+                float randX = Random.Range(xTerrainPos, xTerrainPos + width);
+                float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
+                float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ)); //find the Y pos on the terrain of the X and Z position
+                yVal += 0.4f; //add a small offset to avoid being in the ground
+
+                GameObject newCreature = Instantiate(passiveCreaturePrefab, new Vector3(randX, yVal, randZ), Quaternion.identity); //create the prefab of the NPC at the coordinates
+                newCreature.SetActive(true);
+                yield return new WaitForSeconds(0.01f);
+            }
+        }
+
 
 
     }
 
     IEnumerator CreateEnvironment()
     {
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 300; i++)
         {
             //pick a random X and Z position for the NPC
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
@@ -298,7 +322,7 @@ public class TerrainGenerator : MonoBehaviour
             float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ)); //find the Y pos on the terrain of the X and Z position
             yVal += 0.4f; //add a small offset to avoid being in the ground
 
-            GameObject newObject = Instantiate(environmentObjectArray[Random.Range(0, environmentObjectArray.Length)], new Vector3(randX, yVal, randZ), Quaternion.identity); //create the prefab of the Object at the coordinates
+            GameObject newObject = Instantiate(environmentObjectArray[Random.Range(0, environmentObjectArray.Length)], new Vector3(randX, yVal, randZ), Quaternion.Euler(Random.Range(-360f,360f), 0f, 0f)); //create the prefab of the Object at the coordinates
             newObject.SetActive(true);
             yield return new WaitForSeconds(0.01f);
         }

@@ -191,6 +191,11 @@ public class Terminal : MonoBehaviour
             OutputToTerminal("");
             OutputToTerminal("AGGRESSIVE LIFE FOUND: " + TerrainGenerator.hasEnemies.ToString());
             OutputToTerminal("");
+            if (TerrainGenerator.passiveEvent == true)
+            {
+                OutputToTerminal("CAUTION: UNUSUAL SWARMS OF LIFE DETECTED");
+                OutputToTerminal("");
+            }
             OutputToTerminal("RESOURCES FOUND:");
             for (int i = 0; i < TerrainGenerator.resourcesPresent.Count; i++) // log all resources present in world
             {
