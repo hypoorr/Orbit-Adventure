@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ToonWorldColourOutline
+  m_Name: StickyNote
   m_Shader: {fileID: 4800000, guid: 313fcf3aebc04cf4ab4f8c5f2850be7f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -31,21 +31,21 @@ Material:
     m_Floats:
     - Step1: 1
     - _Gloss: 5.37
-    - _OutlineWidth: 0.285
+    - _OutlineWidth: 0.017
     - _RimPower: 2.2
-    - _RimStep: 0.6
-    - _RimStepSmooth: 0.407
-    - _ShadowStep: 0.363
-    - _ShadowStepSmooth: 0.706
-    - _SpecularStep: 0.718
-    - _SpecularStepSmooth: 0.869
+    - _RimStep: 0.609
+    - _RimStepSmooth: 0.144
+    - _ShadowStep: 0.529
+    - _ShadowStepSmooth: 0.175
+    - _SpecularStep: 0.656
+    - _SpecularStepSmooth: 0.747
     - _Step: 0.432
     - _Step1: 0.537
     - _Step2: 0.018
     - _Step3: 0.97
     - _Step4: 0.025
     m_Colors:
-    - _BaseColor: {r: 0.050980393, g: 0.039215688, b: 0.11764706, a: 0.003921569}
+    - _BaseColor: {r: 1, g: 0.8227806, b: 0, a: 1}
     - _HighColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimColor: {r: 0, g: 0, b: 0, a: 1}

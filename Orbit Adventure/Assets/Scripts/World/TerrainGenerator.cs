@@ -121,7 +121,7 @@ public class TerrainGenerator : MonoBehaviour
             player.gravity = -9.8f;
         }
 
-        // 1/20 chance of a wizzledizzle invasion
+        // 1/20 chance of a NPC invasion
         if (Random.Range(1, 20) == 1)
         {
             passiveEvent = true;
@@ -295,6 +295,8 @@ public class TerrainGenerator : MonoBehaviour
                 newCreature.SetActive(true);
                 yield return new WaitForSeconds(0.01f);
             }
+            StartCoroutine(SpawnEnemy());
+            StartCoroutine(SpawnEnemy());
         }
         else
         {
