@@ -27,9 +27,10 @@ public class TerrainGenerator : MonoBehaviour
     [SerializeField] private GameObject[] environmentObjectArray;
 
 
+    private Color32 randomColour;
     public Material floorMaterial;
     public Material worldToonColour;
-
+    public Material worldToonColourOutline;
     public NavMeshSurface navMeshSurface;
     public PlayerMotor player;
 
@@ -74,9 +75,12 @@ public class TerrainGenerator : MonoBehaviour
 
         Terrain terrain = GetComponent<Terrain>();
         floorMaterial = terrain.materialTemplate; // get the terrain material to be able to change colour
-        floorMaterial.color = new Color32((byte)Random.Range(0, 100), (byte)Random.Range(0, 100), (byte)Random.Range(0, 100), 1); // assign a random colour to the ground
-        worldToonColour.color = floorMaterial.color;
-        worldToonColour.SetColor("_Color", floorMaterial.color);
+        randomColour = new Color32((byte)Random.Range(0, 100), (byte)Random.Range(0, 100), (byte)Random.Range(0, 100), 1);
+
+        floorMaterial.color = randomColour; // assign a random colour to the ground
+        worldToonColour.SetColor("_BaseColor", randomColour); // assign the same random colour to a toon shader material
+        worldToonColourOutline.SetColor("_BaseColor", randomColour);
+        
         terrain.terrainData = GenerateTerrain(terrain.terrainData);
         Debug.Log(depth);
 
@@ -314,7 +318,7 @@ public class TerrainGenerator : MonoBehaviour
 
     IEnumerator CreateEnvironment()
     {
-        for (int i = 0; i < 300; i++)
+        for (int i = 0; i < 500; i++)
         {
             //pick a random X and Z position for the NPC
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
@@ -323,6 +327,7 @@ public class TerrainGenerator : MonoBehaviour
             yVal += 0.4f; //add a small offset to avoid being in the ground
 
             GameObject newObject = Instantiate(environmentObjectArray[Random.Range(0, environmentObjectArray.Length)], new Vector3(randX, yVal, randZ), Quaternion.Euler(Random.Range(-360f,360f), 0f, 0f)); //create the prefab of the Object at the coordinates
+
             newObject.SetActive(true);
             yield return new WaitForSeconds(0.01f);
         }
