@@ -10,6 +10,9 @@ public class Notifications : MonoBehaviour
     private TextMeshProUGUI titleText;
     private TextMeshProUGUI notiText;
 
+    public AudioSource audioSource;
+    public AudioClip notiSound;
+
     private string givenText;
     private string givenTitle;
 
@@ -26,6 +29,7 @@ public class Notifications : MonoBehaviour
         titleText.text = title;
         notiText.text = text;
         newNoti.SetActive(true);
+        audioSource.PlayOneShot(notiSound);
         StartCoroutine(DestroyNotification(newNoti));
     }
 

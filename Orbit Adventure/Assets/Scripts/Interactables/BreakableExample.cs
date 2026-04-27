@@ -8,6 +8,9 @@ public class BreakableExample : Breakable
 {
 
     [SerializeField] private string resourceToGrant;
+
+    [SerializeField] private AudioClip[] hitSounds;
+    private AudioSource audioSource;
     private Inventory inventory;
     private int hp;
     private Vector3 scale;
@@ -16,10 +19,18 @@ public class BreakableExample : Breakable
     {
         scale = transform.localScale;
         inventory = FindFirstObjectByType<Inventory>();
+        audioSource = GetComponent<AudioSource>();
+        hitSounds = Resources.LoadAll<AudioClip>("HitSounds"); // load hit sounds
         hp = 50;
 
     }
 
+
+    void PlayRandomSound()
+    {
+        int index = UnityEngine.Random.Range(0, hitSounds.Length);
+        audioSource.PlayOneShot(hitSounds[index]);
+    }
     IEnumerator BreakEffect()
     {
 
@@ -29,12 +40,12 @@ public class BreakableExample : Breakable
 
         transform.DOScale(scale / 1.2f, 0.1f) //creates a scale using an easing
             .SetEase(Ease.OutQuart);
-        
+
         yield return new WaitForSeconds(0.1f); //Waits for first animation to complete
 
         transform.DOScale(scale, 0.4f) // scales back up
             .SetEase(Ease.OutQuart);
-            
+
     }
 
     private List<GameObject> activeParticles = new List<GameObject>();
@@ -77,12 +88,6 @@ public class BreakableExample : Breakable
                     Destroy(diamondParticle);
                 }
                 break;
-
-            for (int i = 0; i < activeParticles.Count; i++)
-            {
-                Destroy(activeParticles[i]);
-                activeParticles.RemoveAt(i);
-            }
         }
 
 
@@ -93,6 +98,7 @@ public class BreakableExample : Breakable
         if (hp >= 0)
         {
             hp -= 25;
+            PlayRandomSound();
             StartCoroutine(BreakEffect());
         }
         else
