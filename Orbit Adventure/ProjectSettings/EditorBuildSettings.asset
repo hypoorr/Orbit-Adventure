@@ -15,5 +15,5 @@ EditorBuildSettings:
     path: Assets/Scenes/InsideShip.unity
     guid: e5a107e4b65884948b4b3fc95a440459
   m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 3a05e2b982601d04db1a2f65ee3df815, type: 3}
   m_UseUCBPForAssetBundles: 0

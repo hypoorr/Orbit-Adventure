@@ -38,9 +38,11 @@ public class Inventory : MonoBehaviour
 
     public Notifications notification;
 
+
+    private float initSens; // store initial sensitivity
     void Start()
     {
-
+        initSens = PlayerLook.xSensitivity;
     }
 
     void Update()
@@ -54,8 +56,8 @@ public class Inventory : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 inventoryUI.SetActive(false);
-                gameObject.GetComponent<PlayerLook>().xSensitivity = 60;
-                gameObject.GetComponent<PlayerLook>().ySensitivity = 60;
+                PlayerLook.xSensitivity = initSens;
+                PlayerLook.ySensitivity = initSens;
             }
             else // if inventory closed, then open it and show cursor
             {
@@ -63,8 +65,8 @@ public class Inventory : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 inventoryUI.SetActive(true);
-                gameObject.GetComponent<PlayerLook>().xSensitivity = 0;
-                gameObject.GetComponent<PlayerLook>().ySensitivity = 0;
+                PlayerLook.xSensitivity = 0;
+                PlayerLook.ySensitivity = 0;
             }
 
         }

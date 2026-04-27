@@ -16,6 +16,7 @@ public class TerrainGenerator : MonoBehaviour
 
     public GameObject prefab;
     public GameObject rockPrefab;
+    public GameObject bigRockPrefab;
     public GameObject diamondPrefab;
     public GameObject goldPrefab;
     public GameObject enemyPrefab;
@@ -218,7 +219,15 @@ public class TerrainGenerator : MonoBehaviour
             float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ)); //find the Y pos on the terrain of the X and Z position
             yVal += 0.5f; //add a small offset to avoid being in the ground
 
-            Instantiate(rockPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity); //create the prefab of the material at the coordinates
+            if(Random.Range(1, 15) == 1) // 1/15 chance to be a big rock
+            {
+                Instantiate(bigRockPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(rockPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity); //create the prefab of the material at the coordinates
+            }
+            
             yield return new WaitForSeconds(0.01f);
         }
 

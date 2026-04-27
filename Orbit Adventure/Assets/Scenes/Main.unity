@@ -12353,8 +12353,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 797038104}
-  xSensitivity: 60
-  ySensitivity: 60
 --- !u!114 &1024666206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27294,6 +27292,7 @@ MonoBehaviour:
   height: 1000
   prefab: {fileID: 5227282673870253036, guid: 59aed8c3a9138a747a206cf218b14e3c, type: 3}
   rockPrefab: {fileID: 571576774796714241, guid: 7e70f6d34bc367b4ba8026dcec60baa6, type: 3}
+  bigRockPrefab: {fileID: 571576774796714241, guid: 47928f1346d73bc4aabc47e148684b8d, type: 3}
   diamondPrefab: {fileID: 2592873004061284421, guid: 01bc2709067e8244aae561044368b51b, type: 3}
   goldPrefab: {fileID: 1352406866100811147, guid: 4c390819d9bdb6949bd96dd8579a05fa, type: 3}
   enemyPrefab: {fileID: 1759171408004545465}

@@ -6,8 +6,8 @@ public class PlayerLook : MonoBehaviour
     private float xRotation = 0f;
 
     //Define X and Y camera sensitivity
-    public float xSensitivity = 30f;
-    public float ySensitivity = 30f;
+    public static float xSensitivity;
+    public static float ySensitivity;
 
     public void ProcessLook(Vector2 input)
     {
@@ -24,6 +24,7 @@ public class PlayerLook : MonoBehaviour
     {
         // locks the cursor to the center of the screen
         Cursor.lockState = CursorLockMode.Locked;
+        //Debug.Log(xSensitivity);
 
         // hide the cursor
         Cursor.visible = false;

@@ -122,6 +122,11 @@ public class Terminal : MonoBehaviour
                             OutputToTerminal("FlizzyOS by FlizCorp™");
                             break;
 
+                        case "i":
+                            OutputToTerminal("Press i when not on the terminal silly...");
+
+                            break;
+
                         default:
                             OutputToTerminal("Unknown command. Type 'help' for a list of commands");
                             break;
