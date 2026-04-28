@@ -3,6 +3,7 @@ using UnityEngine;
 public class RefuelShip : Interactable
 {
     private int fuelIndex;
+    public Notifications notification;
 
     protected override void Interact()
     {
@@ -17,6 +18,7 @@ public class RefuelShip : Interactable
 
         Inventory.items[fuelIndex].itemQuantity -= 1; // take away fuel from inventory
         ShipFuel.shipFuel += 1; // add fuel to fuel amount
+        notification.NewNotification("Ship fuel", "Refuelled ship 1x");
         
     }
 }

@@ -169,8 +169,8 @@ public class Terminal : MonoBehaviour
             {
                 OutputToTerminal("Taking off...");
                 yield return new WaitForSeconds(2f);
-                SceneManager.LoadScene("InsideShip");
                 ShipFuel.shipFuel -= 2;
+                SceneManager.LoadScene("InsideShip");
             }
 
         }

@@ -69,4 +69,32 @@ public class Craftables : MonoBehaviour
         }
     }
 
+    public void CraftBetterFuel()
+    {
+        for (int i = 0; i < Inventory.items.Count; i++)
+        {
+            if (Inventory.items[i].itemName == "Diamond")
+            {
+                diamond = i;
+            }
+            if (Inventory.items[i].itemName == "Stone")
+            {
+                stone = i;
+            }
+
+        }
+        if (Inventory.items[diamond].itemQuantity >= 2 && Inventory.items[diamond].itemName == "Diamond" && Inventory.items[stone].itemQuantity >= 5 && Inventory.items[gold].itemName == "Stone") // if requirements are met, remove resource and grant item
+        {
+            Debug.Log("Crafting better fuel");
+            Inventory.items[diamond].itemQuantity -= 2;
+            Inventory.items[stone].itemQuantity -= 5;
+
+            Inventory.AddItem("Fuel (L)", 20, false);
+
+        }
+        else
+        {
+            Debug.Log("too broke");
+        }
+    }
 }

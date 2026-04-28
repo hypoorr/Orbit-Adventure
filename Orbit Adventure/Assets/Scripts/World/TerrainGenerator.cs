@@ -18,6 +18,7 @@ public class TerrainGenerator : MonoBehaviour
     public GameObject rockPrefab;
     public GameObject bigRockPrefab;
     public GameObject diamondPrefab;
+    public GameObject bigDiamondPrefab;
     public GameObject goldPrefab;
     public GameObject enemyPrefab;
     public GameObject passiveCreaturePrefab;
@@ -70,7 +71,7 @@ public class TerrainGenerator : MonoBehaviour
         loadingScreen.SetActive(true);
 
         //define the seed and get the terrain to begin generation
-        seed = Random.Range(0, 1000);
+        seed = Random.Range(100, 1000);
         Random.InitState(Mathf.RoundToInt(seed));
         depth = seed / 25f;
 
@@ -106,7 +107,7 @@ public class TerrainGenerator : MonoBehaviour
             StartCoroutine(SpawnEnemy());
         }
 
-        if (Random.Range(1, 5) == 1) // 1/5 chance to spawn diamonds
+        if (Random.Range(1, 3) == 1) // 1/3 chance to spawn diamonds
         {
             StartCoroutine(SpawnDiamonds());
         }
@@ -237,15 +238,21 @@ public class TerrainGenerator : MonoBehaviour
     IEnumerator SpawnDiamonds()
     {
         resourcesPresent.Add("Diamond");
-        for (int i = 0; i < 40; i++)
+        for (int i = 0; i < 50; i++)
         {
             //pick a random X and Z position for the resource
             float randX = Random.Range(xTerrainPos, xTerrainPos + width);
             float randZ = Random.Range(zTerrainPos, zTerrainPos + height);
             float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ)); //find the Y pos on the terrain of the X and Z position
             yVal += 0f; //add a small offset to avoid being in the ground
-
-            Instantiate(diamondPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity); //create the prefab of the material at the coordinates
+            if (UnityEngine.Random.Range(1, 8) == 1) // 1/8 chance to be a big diamond
+            {
+                Instantiate(bigDiamondPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity); //create the prefab of the material at the coordinates
+            }
+            else
+            {
+                Instantiate(diamondPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity); //create the prefab of the material at the coordinates
+            }
             yield return new WaitForSeconds(0.01f);
         }
 

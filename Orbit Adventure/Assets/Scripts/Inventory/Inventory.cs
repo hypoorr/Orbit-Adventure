@@ -113,7 +113,7 @@ public class Inventory : MonoBehaviour
             }
 
 
-            rect.anchoredPosition = new Vector2(20 * currentColumn - 2.5f, currentRow * -30);
+            rect.anchoredPosition = new Vector2(20 * currentColumn, currentRow * -30);
 
             newElement.SetActive(true);
             newElement.name = i.itemName;
