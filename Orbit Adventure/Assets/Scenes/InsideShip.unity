@@ -6120,6 +6120,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  fadeInScreen: {fileID: 1690983276}
 --- !u!114 &696236568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10097,7 +10098,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1232219506
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13294,6 +13295,7 @@ GameObject:
   - component: {fileID: 1690983274}
   - component: {fileID: 1690983273}
   - component: {fileID: 1690983272}
+  - component: {fileID: 1690983276}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -13390,6 +13392,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1690983276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690983271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 535063ab9407bf7489c61a90b907ac83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeUI: {fileID: 1232219505}
 --- !u!1 &1709510589
 GameObject:
   m_ObjectHideFlags: 0

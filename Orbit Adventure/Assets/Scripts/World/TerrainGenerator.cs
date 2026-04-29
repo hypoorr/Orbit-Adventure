@@ -14,6 +14,7 @@ public class TerrainGenerator : MonoBehaviour
     private float xTerrainPos;
     private float zTerrainPos;
 
+    public FadeInScreen fadeInScreen;
     public GameObject prefab;
     public GameObject rockPrefab;
     public GameObject bigRockPrefab;
@@ -37,7 +38,7 @@ public class TerrainGenerator : MonoBehaviour
     public PlayerMotor player;
 
 
-    
+
 
     private string[] firstNamePlanet = { "flizzy", "larpy", "gurtified", "perry", "deuce" };
     private string[] lastNamePlanet = { "type B", "weasle", "flizzable", "octane", };
@@ -69,6 +70,7 @@ public class TerrainGenerator : MonoBehaviour
         hasEnemies = false;
         passiveEvent = false;
         loadingScreen.SetActive(true);
+        fadeInScreen.FadeOutStart();
 
         //define the seed and get the terrain to begin generation
         seed = Random.Range(100, 1000);
@@ -82,7 +84,7 @@ public class TerrainGenerator : MonoBehaviour
         floorMaterial.color = randomColour; // assign a random colour to the ground
         worldToonColour.SetColor("_BaseColor", randomColour); // assign the same random colour to a toon shader material
         worldToonColourOutline.SetColor("_BaseColor", randomColour);
-        
+
         terrain.terrainData = GenerateTerrain(terrain.terrainData);
         Debug.Log(depth);
 
@@ -94,7 +96,7 @@ public class TerrainGenerator : MonoBehaviour
         StartCoroutine(PositionShip());
         StartCoroutine(SpawnRocks());
         StartCoroutine(SpawnGold());
-        
+
         StartCoroutine(CreateEnvironment());
         GeneratePlanetName();
 
@@ -220,7 +222,7 @@ public class TerrainGenerator : MonoBehaviour
             float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ)); //find the Y pos on the terrain of the X and Z position
             yVal += 0.5f; //add a small offset to avoid being in the ground
 
-            if(Random.Range(1, 15) == 1) // 1/15 chance to be a big rock
+            if (Random.Range(1, 15) == 1) // 1/15 chance to be a big rock
             {
                 Instantiate(bigRockPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity);
             }
@@ -228,7 +230,7 @@ public class TerrainGenerator : MonoBehaviour
             {
                 Instantiate(rockPrefab, new Vector3(randX, yVal, randZ), Quaternion.identity); //create the prefab of the material at the coordinates
             }
-            
+
             yield return new WaitForSeconds(0.01f);
         }
 
@@ -344,7 +346,7 @@ public class TerrainGenerator : MonoBehaviour
             float yVal = Terrain.activeTerrain.SampleHeight(new Vector3(randX, 0, randZ)); //find the Y pos on the terrain of the X and Z position
             yVal += 0.4f; //add a small offset to avoid being in the ground
 
-            GameObject newObject = Instantiate(environmentObjectArray[Random.Range(0, environmentObjectArray.Length)], new Vector3(randX, yVal, randZ), Quaternion.Euler(Random.Range(-360f,360f), 0f, 0f)); //create the prefab of the Object at the coordinates
+            GameObject newObject = Instantiate(environmentObjectArray[Random.Range(0, environmentObjectArray.Length)], new Vector3(randX, yVal, randZ), Quaternion.Euler(Random.Range(-360f, 360f), 0f, 0f)); //create the prefab of the Object at the coordinates
 
             newObject.SetActive(true);
             yield return new WaitForSeconds(0.01f);

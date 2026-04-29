@@ -12,6 +12,8 @@ public class Terminal : MonoBehaviour
     public GameObject loadingScreen;
     public UnityEvent exitTerminal;
 
+    public FadeInScreen fadeInScreen;
+
     static private string inputtedName = "";
 
     void Start()
@@ -159,7 +161,8 @@ public class Terminal : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "InsideShip") // if inside the ship, travel to planet
         {
             OutputToTerminal("Taking off...");
-            yield return new WaitForSeconds(2f);
+            fadeInScreen.FadeInStart();
+            yield return new WaitForSeconds(3f);
             loadingScreen.SetActive(true);
             SceneManager.LoadScene("Main");
         }
@@ -168,6 +171,7 @@ public class Terminal : MonoBehaviour
             if (SceneManager.GetActiveScene().name == "Main") // if on the planet, send back into orbit
             {
                 OutputToTerminal("Taking off...");
+                fadeInScreen.FadeInStart();
                 yield return new WaitForSeconds(2f);
                 ShipFuel.shipFuel -= 2;
                 SceneManager.LoadScene("InsideShip");
